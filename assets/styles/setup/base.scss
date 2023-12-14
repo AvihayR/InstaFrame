@@ -1,0 +1,12 @@
+body {
+    background-color: $light-bg;
+    color: $dark-bg
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: $dark-bg;
+        color: $light-bg;
+    }
+
+}

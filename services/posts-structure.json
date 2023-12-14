@@ -1,0 +1,10 @@
+[
+    {
+        "_id": 1,
+        "userId": "U1",
+        "caption": "",
+        "imgUrl": "",
+        "likes": [],
+        "comments": []
+    }
+]

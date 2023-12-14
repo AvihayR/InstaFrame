@@ -1,0 +1,11 @@
+[
+    {
+        "_id": "U1",
+        "username": "",
+        "fullname": "",
+        "password": "",
+        "posts": [],
+        "following": [],
+        "followers": []
+    }
+]

@@ -1,7 +1,5 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import '../assets/styles/main.scss'
-const inter = Inter({ subsets: ['latin'] })
+import type { Metadata } from 'next'
 import { Header } from '@/cmps/Header'
 
 export const metadata: Metadata = {
@@ -16,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <head>
+        <link rel="icon" href="./favicon.ico" sizes="any" />
+      </head>
+      <body className='block md:flex flex-row'>
         <Header />
         {children}
       </body>

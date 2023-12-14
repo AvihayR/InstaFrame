@@ -1,0 +1,10 @@
+.app-header {
+
+    input {
+        &.search {
+            background-color: $dark-bg-1;
+            width: rem(268px);
+            height: rem(36px);
+        }
+    }
+}

@@ -3,8 +3,10 @@
 @import url(../../node_modules/tailwindcss/utilities.css);
 
 // Setup
+@import './setup/functions.scss';
 @import './setup/variables.scss';
 @import './setup/base.scss';
+@import './setup/helpers.scss';
 
 
 // Basics
@@ -12,3 +14,4 @@
 // Views
 
 // Components
+@import './cmps/Header.scss'

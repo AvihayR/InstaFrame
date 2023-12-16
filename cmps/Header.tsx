@@ -1,12 +1,14 @@
 import localFont from 'next/font/local'
 import Image from 'next/image'
 export const instaFont = localFont({ src: '../assets/fonts/insta.ttf' })
-import HeartIcon from './HeartIcon';
+import HeartIcon from './icons/HeartIcon'
+import { NavBar } from './NavBar'
 
 
 export function Header() {
     return (
-        <header className='app-header flex px-2 py-4 border-b border-zinc-600 justify-center xs:px-4 md:border-b-0 border-r'>
+        <header className='app-header flex px-2 py-4 border-b justify-center xs:px-4 md:border-b-0 md:border-r'>
+            <NavBar />
             <div className="search-container flex items-center gap-5 md:hidden">
                 <HeartIcon className='' />
                 <input type="text" className='search flex grow rounded-md px-2' placeholder='Search..' />

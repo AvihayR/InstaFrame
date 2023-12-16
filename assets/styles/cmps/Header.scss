@@ -1,10 +1,43 @@
 .app-header {
+    border-color: $light-bg-1;
 
     input {
         &.search {
-            background-color: $dark-bg-1;
+            background-color: $light-bg-1;
             width: rem(268px);
             height: rem(36px);
+        }
+    }
+
+    .nav-container {
+        .icon-container {
+            border-radius: 0.5rem;
+            cursor: pointer;
+            padding: rem(12px);
+
+            &:hover {
+                background-color: $light-shadow;
+            }
+        }
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .app-header {
+        border-color: $dark-bg-1;
+
+        input {
+            &.search {
+                background-color: $dark-bg-1;
+            }
+        }
+
+        .nav-container {
+            .icon-container {
+                &:hover {
+                    background-color: $dark-shadow;
+                }
+            }
         }
     }
 }

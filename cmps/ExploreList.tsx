@@ -1,9 +1,18 @@
-import { Post, Comment } from '../typings';
+import { Post, Comment } from '../typings'
+import ExplorePreview from './ExplorePreview'
 
+interface ExploreListProps {
+    posts: Post[]
+}
 
-export function ExploreList(posts: Post[]) {
+const ExploreList: React.FC<ExploreListProps> = ({ posts }) => {
 
     return (
-        <h1>Posts</h1>
+        <div>
+            {posts.map(post => <ExplorePreview key={post._id} post={post} />)}
+        </div>
     )
 }
+
+export default ExploreList
+

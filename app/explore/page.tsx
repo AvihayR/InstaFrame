@@ -3,9 +3,11 @@
 
 import { useEffect, useState } from 'react'
 import { postService } from '../../services/post.service.local'
+import ExploreList from '@/cmps/ExploreList'
+import { Post } from '../../typings'
 
 export default function ExplorePage() {
-    const [posts, setPosts] = useState(null)
+    const [posts, setPosts] = useState([])
 
     useEffect(() => {
         onGetPosts()
@@ -24,6 +26,7 @@ export default function ExplorePage() {
     return (
         <section className="explore-page">
             <h1>Hello explore</h1>
+            <ExploreList posts={posts} />
         </section>
     )
 }

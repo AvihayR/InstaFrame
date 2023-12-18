@@ -8,9 +8,9 @@ interface ExploreListProps {
 const ExploreList: React.FC<ExploreListProps> = ({ posts }) => {
 
     return (
-        <div>
+        <section className='explore-list flex gap-2 w-11/12'>
             {posts.map(post => <ExplorePreview key={post._id} post={post} />)}
-        </div>
+        </section>
     )
 }
 

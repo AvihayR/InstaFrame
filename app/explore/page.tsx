@@ -24,7 +24,7 @@ export default function ExplorePage() {
     }
 
     return (
-        <section className="explore-page flex flex-col items-center">
+        <section className="explore-page flex flex-col items-center mx-auto md:px-5">
             <ExploreList posts={posts} />
         </section>
     )

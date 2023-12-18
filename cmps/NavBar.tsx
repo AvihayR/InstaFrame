@@ -5,7 +5,7 @@ import NavLinks from "./NavLinks"
 
 export function NavBar() {
     return (
-        <div className="nav-container fixed inset-x-0 bottom-0 flex flex-1 md:flex md:justify-start md:static md:flex-col gap-8 lg:w-56">
+        <div className="nav-container fixed inset-x-0 bottom-0 flex flex-1 md:flex md:justify-start md:static md:flex-col gap-6 lg:w-56">
             <div className="icon-container items-end hidden md:flex">
                 <InstaIcon className="lg:hidden" />
                 <h1 className={`hidden text-xl ${instaFont.className} lg:block`}>InstaFrame</h1>

@@ -8,7 +8,7 @@ import { NavBar } from './NavBar'
 export function Header() {
 
     return (
-        <header className='app-header flex px-2 py-4 border-b justify-center xs:px-4 md:border-b-0 md:border-r'>
+        <header className='app-header flex px-3 py-2 border-b justify-center md:border-b-0 md:border-r md:py-5'>
             <NavBar />
             <div className="search-container flex flex-1 items-center gap-5 md:hidden">
                 <HeartIcon className='' />

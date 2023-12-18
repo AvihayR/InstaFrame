@@ -38,7 +38,7 @@ export default function NavLinks() {
                             )
                         }
                     >
-                        <LinkIcon className="w-6" />
+                        <LinkIcon className="" />
                         <span className="hidden ms-4 lg:block">{link.name}</span>
                     </Link>
                 )

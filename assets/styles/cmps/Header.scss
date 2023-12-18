@@ -13,12 +13,18 @@
         nav {
             // background-color: $light-bg;
             border-color: $light-shadow;
+            font-size: .9rem;
         }
 
         .icon-container {
             border-radius: 0.5rem;
             cursor: pointer;
             padding: rem(12px);
+
+
+            svg {
+                padding: 1.5px;
+            }
 
             &:hover {
                 background-color: $light-shadow;

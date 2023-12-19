@@ -1,4 +1,13 @@
 .preview-card {
+
+    &.tall {
+        grid-row: span 2;
+
+        img {
+            height: 100%;
+        }
+    }
+
     &:hover {
         .img-backdrop {
             opacity: 0.3;
@@ -12,6 +21,10 @@
     }
 
     .icon-container {
+        .shadowed {
+            filter: drop-shadow(1px 1px 5px #0f0f0fa1);
+        }
+
         &.comments {
             top: calc(50% - ($icon-height / 2));
             left: calc(50% - ($icon-width / 2));

@@ -33,6 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
+    "services/util.service.js",
   ],
   "exclude": [
     "node_modules"

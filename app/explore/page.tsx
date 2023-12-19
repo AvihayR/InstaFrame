@@ -7,7 +7,7 @@ import ExploreList from '@/cmps/ExploreList'
 import { Post } from '../../typings'
 
 export default function ExplorePage() {
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState<Post[]>([]);
 
     useEffect(() => {
         onGetPosts()

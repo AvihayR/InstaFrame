@@ -1,5 +1,5 @@
+import { Post } from "@/typings";
 import { utilService } from "./util.service"
-
 
 export const storageService = {
     query,
@@ -11,31 +11,39 @@ export const storageService = {
     save
 }
 
-function query(entityType, delay = 500) {
-    var entities = JSON.parse(localStorage.getItem(entityType)) || []
+export interface Entity {
+    _id: string;
+    [key: string]: any;
+}
+
+function query(entityType: string, delay = 500): Promise<Entity[] | Post[]> {
+    const storedData = localStorage.getItem(entityType)
+    const entities = storedData ? JSON.parse(storedData) : []
+
     return new Promise(resolve => setTimeout(() => resolve(entities), delay))
 }
 
-function get(entityType, entityId) {
-    return query(entityType).then(entities => {
+
+function get(entityType: string, entityId: string) {
+    return query(entityType).then((entities: Entity[]) => {
         const entity = entities.find(entity => entity._id === entityId)
         if (!entity) throw new Error(`Get failed, cannot find entity with id: ${entityId} in: ${entityType}`)
         return entity
     })
 }
 
-function post(entityType, newEntity) {
-    newEntity = JSON.parse(JSON.stringify(newEntity))
+function post(entityType: string, newEntity: Entity | Post) {
+    newEntity = JSON.parse(JSON.stringify(newEntity)) as Entity
     newEntity._id = utilService.makeId()
     console.log(newEntity)
     return query(entityType).then(entities => {
-        entities.unshift(newEntity)
+        entities.unshift(newEntity as Post)
         save(entityType, entities)
         return newEntity
     })
 }
 
-function put(entityType, updatedEntity) {
+function put(entityType: string, updatedEntity: Entity) {
     updatedEntity = JSON.parse(JSON.stringify(updatedEntity))
     return query(entityType).then(entities => {
         const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
@@ -46,7 +54,7 @@ function put(entityType, updatedEntity) {
     })
 }
 
-function remove(entityType, entityId) {
+function remove(entityType: string, entityId: string) {
     return query(entityType).then(entities => {
         const idx = entities.findIndex(entity => entity._id === entityId)
         if (idx < 0) throw new Error(`Remove failed, cannot find entity with id: ${entityId} in: ${entityType}`)
@@ -55,12 +63,12 @@ function remove(entityType, entityId) {
     })
 }
 
-function insertMany(entityType, entities) {
+function insertMany(entityType: string, entities: Entity[]) {
     entities.forEach(entity => entity._id = utilService.makeId())
     save(entityType, entities)
 }
 
 
-function save(entityType, entities) {
+function save(entityType: string, entities: Entity[]) {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }

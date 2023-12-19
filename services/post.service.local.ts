@@ -1,7 +1,7 @@
 import { utilService } from "./util.service"
-import { storageService } from "./async-storage.service"
+import { Entity, storageService } from "./async-storage.service"
 import demoPosts from "./posts.demo"
-import { unstable_noStore as noStore } from 'next/cache'
+import { Post } from '../typings'
 // -----------------------------------------------------------
 const STORAGE_KEY = 'postsDB'
 // -----------------------------------------------------------
@@ -14,7 +14,7 @@ export const postService = {
 _createPosts()
 
 
-async function getPosts() {
+async function getPosts(): Promise<Post[] | Entity[]> {
     return await storageService.query(STORAGE_KEY)
 }
 

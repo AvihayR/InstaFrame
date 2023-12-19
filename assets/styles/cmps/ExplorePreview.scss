@@ -1,0 +1,20 @@
+.preview-card {
+    &:hover {
+        .img-backdrop {
+            opacity: 0.3;
+        }
+
+        .icon-container {
+            &.comments {
+                opacity: 1;
+            }
+        }
+    }
+
+    .icon-container {
+        &.comments {
+            top: calc(50% - ($icon-height / 2));
+            left: calc(50% - ($icon-width / 2));
+        }
+    }
+}

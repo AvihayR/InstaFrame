@@ -14,15 +14,15 @@ export const postService = {
 _createPosts()
 
 
-async function getPosts(): Promise<Post[] | Entity[]> {
+async function getPosts(): Promise<Post[]> {
     return await storageService.query(STORAGE_KEY)
 }
 
 async function _createPosts() {
     console.log('Create posts - start');
-    let res = await storageService.query(STORAGE_KEY);
+    let res = await storageService.query(STORAGE_KEY)
     if (!res || !res.length) {
-        storageService.insertMany(STORAGE_KEY, demoPosts);
+        storageService.insertMany(STORAGE_KEY, demoPosts)
     }
     console.log('Create posts - end');
 }

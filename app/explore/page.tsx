@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { postService } from '../../services/post.service.local'
 import ExploreList from '@/cmps/ExploreList'
 import { Post } from '../../typings'
+import { Entity } from '@/services/async-storage.service'
 
 export default function ExplorePage() {
     const [posts, setPosts] = useState<Post[]>([]);

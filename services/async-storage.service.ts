@@ -16,16 +16,16 @@ export interface Entity {
     [key: string]: any;
 }
 
-function query(entityType: string, delay = 500): Promise<Entity[] | Post[]> {
-    const storedData = localStorage.getItem(entityType)
-    const entities = storedData ? JSON.parse(storedData) : []
+function query<T>(entityType: string, delay = 500): Promise<T[]> {
+    const storedData = localStorage.getItem(entityType);
+    const entities = storedData ? JSON.parse(storedData) : [];
 
-    return new Promise(resolve => setTimeout(() => resolve(entities), delay))
+    return new Promise(resolve => setTimeout(() => resolve(entities), delay));
 }
 
 
 function get(entityType: string, entityId: string) {
-    return query(entityType).then((entities: Entity[]) => {
+    return query<Entity>(entityType).then((entities: Entity[]) => {
         const entity = entities.find(entity => entity._id === entityId)
         if (!entity) throw new Error(`Get failed, cannot find entity with id: ${entityId} in: ${entityType}`)
         return entity
@@ -36,7 +36,7 @@ function post(entityType: string, newEntity: Entity | Post) {
     newEntity = JSON.parse(JSON.stringify(newEntity)) as Entity
     newEntity._id = utilService.makeId()
     console.log(newEntity)
-    return query(entityType).then(entities => {
+    return query<Entity>(entityType).then(entities => {
         entities.unshift(newEntity as Post)
         save(entityType, entities)
         return newEntity
@@ -45,7 +45,7 @@ function post(entityType: string, newEntity: Entity | Post) {
 
 function put(entityType: string, updatedEntity: Entity) {
     updatedEntity = JSON.parse(JSON.stringify(updatedEntity))
-    return query(entityType).then(entities => {
+    return query<Entity>(entityType).then(entities => {
         const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
         if (idx < 0) throw new Error(`Update failed, cannot find entity with id: ${updatedEntity._id} in: ${entityType}`)
         entities.splice(idx, 1, updatedEntity)
@@ -55,7 +55,7 @@ function put(entityType: string, updatedEntity: Entity) {
 }
 
 function remove(entityType: string, entityId: string) {
-    return query(entityType).then(entities => {
+    return query<Entity>(entityType).then(entities => {
         const idx = entities.findIndex(entity => entity._id === entityId)
         if (idx < 0) throw new Error(`Remove failed, cannot find entity with id: ${entityId} in: ${entityType}`)
         entities.splice(idx, 1)

@@ -1,16 +1,24 @@
 'use client'
 //
-
 import { useEffect, useState } from 'react'
 import { postService } from '../../services/post.service.local'
 import ExploreList from '@/cmps/ExploreList'
 import { Post } from '../../typings'
-import { Entity } from '@/services/async-storage.service'
 import { Modal } from '@/cmps/Modal'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootStoreState } from '../../store/store'
+import { SET_IS_MODAL_OPEN } from '@/store/reducers/system.reducer'
+import type { Dispatch } from 'redux'
+
 
 export default function ExplorePage() {
+    const dispatch = useDispatch()
     const [posts, setPosts] = useState<Post[]>([]);
-    const [isModalOpen, setIsModalOpen] = useState(false)
+
+    const isModalOpen = useSelector((storeState: RootStoreState) => storeState.systemModule.isPostModalShown) ?? false
+    function setIsModalOpen(isShown: boolean) {
+        dispatch({ type: SET_IS_MODAL_OPEN, isShown })
+    }
 
     useEffect(() => {
         onGetPosts()

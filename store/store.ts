@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
     // reviewModule: reviewReducer,
     // gigModule: gigReducer,
     // orderModule: orderReducer,
-});
+})
 
 let middleware = applyMiddleware(/* Add your middleware here if needed */);
 
@@ -32,6 +32,8 @@ if (typeof window !== 'undefined') {
 }
 
 export const store = createStore(rootReducer, middleware)
+
+export type RootStoreState = ReturnType<typeof rootReducer>
 
 store.subscribe(() => {
     // console.log('storeState:\n', store.getState())

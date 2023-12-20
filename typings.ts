@@ -1,3 +1,4 @@
+//Data Types:
 export interface Post {
     _id: string
     userId: string
@@ -7,7 +8,6 @@ export interface Post {
     likedBy: string[]
     comments: Comment[]
 }
-
 export interface Comment {
     by: string
     txt: string

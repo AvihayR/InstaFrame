@@ -4,13 +4,14 @@ import MultiImgIcon from './icons/MultiImgIcon'
 import FilledCommentsIcon from './icons/CommentsIcon'
 interface ExplorePreviewProps {
     post: Post
+    openModal: () => void
     isTall?: boolean
 }
 
-const ExplorePreview: React.FC<ExplorePreviewProps> = ({ post, isTall = false }) => {
+const ExplorePreview: React.FC<ExplorePreviewProps> = ({ post, openModal, isTall = false }) => {
 
     return (
-        <div className={`preview-card relative ${isTall ? 'tall' : ''}`}>
+        <div onClick={openModal} className={`preview-card relative ${isTall ? 'tall' : ''}`}>
             {post.imgUrls.length > 1 && (
                 <div className="icon-container absolute  top-2 right-2">
                     <MultiImgIcon className='shadowed' />

@@ -19,7 +19,7 @@ export default function RootLayout({
       </head>
       <body className='block md:flex flex-row'>
         <Header />
-        <main className="main-page flex min-h-screen flex-col items-center justify-between py-6">
+        <main className="main-page flex flex-col items-center justify-between py-6">
           {children}
         </main>
       </body>

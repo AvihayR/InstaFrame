@@ -9,16 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@redux-devtools/extension": "^3.3.0",
     "clsx": "^2.0.0",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-redux": "^9.0.4",
     "redux": "^5.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/redux-devtools-extension": "^2.13.2",
     "autoprefixer": "^10.4.16",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",

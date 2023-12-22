@@ -8,7 +8,11 @@ module.exports = {
     './src/**/*.{ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'link-blue': '#0095F6',
+      },
+    },
     screens: {
       'xs': '495px',
       ...defaultTheme.screens,

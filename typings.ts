@@ -1,7 +1,7 @@
 //Data Types:
 export interface Post {
     _id: string
-    userId: string
+    by: { userId: string, username: string, userImg: string }
     caption: string
     imgUrls: string[]
     vidUrls: string[]

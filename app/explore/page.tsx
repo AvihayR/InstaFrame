@@ -9,11 +9,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootStoreState } from '../../store/store'
 import { SET_IS_MODAL_OPEN } from '@/store/reducers/system.reducer'
 import type { Dispatch } from 'redux'
+import { PostDetails } from '@/cmps/PostDetails'
 
 
 export default function ExplorePage() {
     const dispatch = useDispatch()
-    const [posts, setPosts] = useState<Post[]>([]);
+    const [posts, setPosts] = useState<Post[]>([])
+    const [chosenPost, setChosenPost] = useState<Post | null>(null)
 
     const isModalOpen = useSelector((storeState: RootStoreState) => storeState.systemModule.isPostModalShown) ?? false
     function setIsModalOpen(isShown: boolean) {
@@ -23,6 +25,11 @@ export default function ExplorePage() {
     useEffect(() => {
         onGetPosts()
     }, [])
+
+    function openPost(post: Post) {
+        setChosenPost(post)
+        openModal()
+    }
 
     function openModal() {
         setIsModalOpen(true)
@@ -40,9 +47,9 @@ export default function ExplorePage() {
 
     return (
         <section className="explore-page flex flex-col items-center mx-auto md:px-5 xl:px-0">
-            <ExploreList posts={posts} openModal={openModal} />
+            <ExploreList posts={posts} openPost={openPost} />
             <Modal isOpen={isModalOpen} onClose={() => { setIsModalOpen(false) }}>
-                <h1>Hello modal!</h1>
+                <PostDetails post={chosenPost} />
             </Modal>
         </section>
     )

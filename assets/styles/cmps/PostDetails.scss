@@ -1,0 +1,26 @@
+.post-details {
+    .post-img {
+        aspect-ratio: 1;
+        object-fit: cover;
+    }
+
+    .comments-section {
+        background-color: $light-bg;
+
+        .post-owner {
+            border-block-end: 1px solid $dark-bg-1;
+
+            .profile-img {
+                border-radius: 5rem;
+            }
+        }
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .post-details {
+        .comments-section {
+            background-color: $dark-bg1;
+        }
+    }
+}

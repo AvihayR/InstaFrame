@@ -6,7 +6,7 @@ const demoPosts = [
             "username": "avici",
             "userImg": "https://res.cloudinary.com/dfg5z7qzb/image/upload/v1703238277/profile-img_sll1p9.jpg"
         },
-        "caption": "Our beloved Utopia seems to have a passion for travel, and it is now making its inaugural journey to the Middle East alongside Mr. Horacio as part of Pagani's 25th Anniversary celebration.\nYet, it is not the only Hypercar basking in Dubai's hot and sunny weather.\nScroll through the pictures to catch a glimpse of the Zonda F Roadster, the Huayra Roadster and the Huayra Roadster BC.",
+        "caption": "Our beloved Utopia seems to have a passion for travel, \nand it is now making its inaugural journey to the Middle East alongside Mr.Horacio\n as part of Pagani's 25th Anniversary celebration.\nYet, it is not the only Hypercar basking in Dubai's hot and sunny weather.\n\n\nScroll through the pictures to catch a glimpse of the Zonda F Roadster, the Huayra Roadster and the Huayra Roadster BC.🚀",
         "imgUrls": [
             "https://res.cloudinary.com/dfg5z7qzb/image/upload/v1702814354/padani-1_xo9irp.jpg",
             "https://res.cloudinary.com/dfg5z7qzb/image/upload/v1702814355/padani-2_bbugcm.jpg",

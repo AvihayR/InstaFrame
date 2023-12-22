@@ -68,17 +68,17 @@ function timeAgo(timestamp) {
     }
     interval = seconds / 86400;
     if (interval > 1) {
-        return Math.floor(interval) + " days ago";
+        return Math.floor(interval) + "d";
     }
     interval = seconds / 3600;
     if (interval > 1) {
-        return Math.floor(interval) + " hours ago";
+        return Math.floor(interval) + "h";
     }
     interval = seconds / 60;
     if (interval > 1) {
-        return Math.floor(interval) + " minutes ago";
+        return Math.floor(interval) + "m";
     }
-    return "few seconds ago";
+    return "Just now";
 }
 
 

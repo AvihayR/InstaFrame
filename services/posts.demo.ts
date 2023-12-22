@@ -15,7 +15,8 @@ const demoPosts = [
         ],
         "vidUrls": [],
         "likedBy": [],
-        "comments": []
+        "comments": [],
+        postedAt: 1703279541434
     },
     {
         "_id": "p2",
@@ -36,7 +37,8 @@ const demoPosts = [
         ],
         "vidUrls": [],
         "likedBy": [],
-        "comments": []
+        "comments": [],
+        postedAt: 1703279541434
     },
     {
         "_id": "p3",
@@ -58,7 +60,8 @@ const demoPosts = [
         ],
         "vidUrls": [],
         "likedBy": [],
-        "comments": []
+        "comments": [],
+        postedAt: 1703279541434
     },
     {
         "_id": "p4",
@@ -79,7 +82,8 @@ const demoPosts = [
         ],
         "vidUrls": [],
         "likedBy": [],
-        "comments": []
+        "comments": [],
+        postedAt: 1703279541434
     },
     {
         "_id": "p5",
@@ -97,7 +101,8 @@ const demoPosts = [
         ],
         "vidUrls": [],
         "likedBy": [],
-        "comments": []
+        "comments": [],
+        postedAt: 1703279541434
     },
     {
         "_id": "p8",
@@ -118,7 +123,8 @@ const demoPosts = [
         ],
         "vidUrls": [],
         "likedBy": [],
-        "comments": []
+        "comments": [],
+        postedAt: 1703279541434
     },
     {
         "_id": "p6",
@@ -140,7 +146,8 @@ const demoPosts = [
         ],
         "vidUrls": [],
         "likedBy": [],
-        "comments": []
+        "comments": [],
+        postedAt: 1703279541434
     },
     {
         "_id": "p7",
@@ -162,7 +169,8 @@ const demoPosts = [
         ],
         "vidUrls": [],
         "likedBy": [],
-        "comments": []
+        "comments": [],
+        postedAt: 1703279541434
     },
     {
         "_id": "p9",
@@ -180,7 +188,8 @@ const demoPosts = [
         ],
         "vidUrls": [],
         "likedBy": [],
-        "comments": []
+        "comments": [],
+        postedAt: 1703279541434
     },
     {
         "_id": "p10",
@@ -202,7 +211,8 @@ const demoPosts = [
         ],
         "vidUrls": [],
         "likedBy": [],
-        "comments": []
+        "comments": [],
+        postedAt: 1703279541434
     }
 ]
 

@@ -7,9 +7,11 @@ export interface Post {
     vidUrls: string[]
     likedBy: string[]
     comments: Comment[]
+    postedAt: number
 }
 export interface Comment {
-    by: string
+    by: { username: string, userImg: string }
     txt: string
-    likes: string[]
+    postedAt: number
+    likedBy: string[]
 }

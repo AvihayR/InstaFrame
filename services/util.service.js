@@ -81,7 +81,6 @@ function timeAgo(timestamp) {
     return "Just now";
 }
 
-
 function formatDate(date) {
     const months = [
         'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',

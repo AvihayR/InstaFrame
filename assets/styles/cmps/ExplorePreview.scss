@@ -21,6 +21,8 @@
     }
 
     .icon-container {
+        color: $light-bg;
+
         .shadowed {
             filter: drop-shadow(1px 1px 5px #0f0f0fa1);
         }

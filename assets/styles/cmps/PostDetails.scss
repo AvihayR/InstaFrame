@@ -8,10 +8,20 @@
         background-color: $light-bg;
 
         .post-owner {
-            border-block-end: 1px solid $dark-bg-1;
+            border-block-end: 1px solid $light-bg-1;
 
-            .profile-img {
-                border-radius: 5rem;
+            .profile-container {
+                .profile-img {
+                    border-radius: 5rem;
+                }
+
+                .divider {
+                    font-size: rem(12px);
+                    font-weight: 100;
+                    line-height: 1;
+                    margin-inline: rem(5px);
+                }
+
             }
         }
     }
@@ -21,6 +31,11 @@
     .post-details {
         .comments-section {
             background-color: $dark-bg1;
+
+            .post-owner {
+                border-color: $dark-bg-1;
+
+            }
         }
     }
 }

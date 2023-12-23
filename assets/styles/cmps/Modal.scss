@@ -13,5 +13,12 @@
         left: 50%;
         transform: translate(-50%, -50%);
         border-radius: rem(15px);
+
+        .close-btn {
+            position: absolute;
+            top: -1.5rem;
+            right: -2.5rem;
+            cursor: pointer;
+        }
     }
 }

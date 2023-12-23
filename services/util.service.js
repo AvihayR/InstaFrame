@@ -57,28 +57,25 @@ function debounce(func, timeout = 300) {
 
 
 function timeAgo(timestamp) {
-    let seconds = Math.floor((new Date() - timestamp) / 1000);
-    let interval = seconds / 31536000;
+    let seconds = Math.floor((new Date() - timestamp) / 1000)
+    let interval = seconds / 31536000
+    interval = seconds / 604800
     if (interval > 1) {
-        return Math.floor(interval) + " years ago";
+        return Math.floor(interval) + "w"
     }
-    interval = seconds / 2592000;
+    interval = seconds / 86400
     if (interval > 1) {
-        return Math.floor(interval) + " months ago";
+        return Math.floor(interval) + "d"
     }
-    interval = seconds / 86400;
+    interval = seconds / 3600
     if (interval > 1) {
-        return Math.floor(interval) + "d";
+        return Math.floor(interval) + "h"
     }
-    interval = seconds / 3600;
+    interval = seconds / 60
     if (interval > 1) {
-        return Math.floor(interval) + "h";
+        return Math.floor(interval) + "m"
     }
-    interval = seconds / 60;
-    if (interval > 1) {
-        return Math.floor(interval) + "m";
-    }
-    return "Just now";
+    return "Just now"
 }
 
 function formatDate(date) {

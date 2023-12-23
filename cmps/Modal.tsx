@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+import CloseIcon from "./icons/CloseIcon"
 
 interface ModalProps {
     isOpen: boolean
@@ -14,8 +15,9 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
 
     if (!isOpen) return null
     return (
-        <div onClick={onClose} className="modal-overlay">
+        <div onClick={onClose} className="modal-overlay relative">
             <article onClick={handleContentClick} className={`modal-content`}>
+                <CloseIcon className="close-btn" onClick={onClose} />
                 {children}
             </article>
         </div>

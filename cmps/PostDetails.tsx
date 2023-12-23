@@ -13,13 +13,15 @@ export function PostDetails({ post }: PostDetailsProps) {
 
 
     return (
-        <div className="post-details flex">
-            <div className="img-container">
-                {post?.imgUrls[0] && (
-                    <Image className='post-img' src={post.imgUrls[0]} alt="Post Image" width={905} height={905} />
-                )}
-            </div>
-            <section className='comments-section w-full'>
+        <div className="post-details flex justify-center">
+
+            {post?.imgUrls[0] && (
+                <div className="img-container">
+                    <Image className='post-img' src={post.imgUrls[0]} alt="Post Image" width={705} height={705} />
+                </div>
+            )}
+
+            <section className='comments-section'>
                 <PostHeading post={post} />
                 <article className='post-caption flex items-start px-4 py-3'>
                     {post?.by && <Image className='profile-img cursor-pointer rounded-3xl' src={post.by.userImg} width={30} height={30} alt='Profile image' />}

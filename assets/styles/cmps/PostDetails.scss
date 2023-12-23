@@ -1,10 +1,24 @@
 .post-details {
-    .post-img {
-        aspect-ratio: 1;
-        object-fit: cover;
+    // width: 85vw;
+    // height: 85vh;
+    max-width: 1405px;
+    margin-inline: auto;
+
+    .img-container {
+        min-width: rem(550px);
+
+        .post-img {
+            // aspect-ratio: 1/1;
+            // object-fit: cover;
+            object-fit: contain;
+            width: auto;
+            height: auto;
+        }
     }
 
     .comments-section {
+        min-width: rem(404px);
+        max-width: rem(499px);
         background-color: $light-bg;
 
         .post-owner {

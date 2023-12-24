@@ -10,12 +10,14 @@ import { RootStoreState } from '../../store/store'
 import { SET_IS_MODAL_OPEN } from '@/store/reducers/system.reducer'
 import type { Dispatch } from 'redux'
 import { PostDetails } from '@/cmps/PostDetails'
+import { userService } from '@/services/user.service.local'
 
 
 export default function ExplorePage() {
     const dispatch = useDispatch()
     const [posts, setPosts] = useState<Post[]>([])
     const [chosenPost, setChosenPost] = useState<Post | null>(null)
+
 
     const isModalOpen = useSelector((storeState: RootStoreState) => storeState.systemModule.isPostModalShown) ?? false
     function setIsModalOpen(isShown: boolean) {
@@ -24,6 +26,7 @@ export default function ExplorePage() {
 
     useEffect(() => {
         onGetPosts()
+        userService.getEmptyUser()
     }, [])
 
     function openPost(post: Post) {

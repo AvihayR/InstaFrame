@@ -28,6 +28,18 @@ export interface User {
     following: Followers[],
 }
 
+export interface UserCreds {
+    username: string
+    password: string
+}
+
+
+export interface UserToken {
+    _id: string
+    username: string
+    imgUrl: string
+}
+
 export interface Followers {
     _id: string
     username: string

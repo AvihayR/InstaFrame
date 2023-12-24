@@ -5,7 +5,6 @@ import { Provider } from 'react-redux'
 import { store } from '../store/store'
 import { Providers } from '@/Providers'
 
-
 export const metadata: Metadata = {
   title: 'Instaframe',
   description: 'The platform to share and frame your memories',

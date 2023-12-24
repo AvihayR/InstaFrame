@@ -50,6 +50,7 @@ async function login(userCred: { username: string, password: string }) {
     const user = users.find(user => user.username === userCred.username)
     // const user = await httpService.post('auth/login', userCred)
     if (user) {
+        console.log(userCred)
         return saveLocalUser(user)
     }
 }
@@ -67,8 +68,8 @@ async function logout() {
 }
 
 function saveLocalUser(user: User) {
-    let miniUser = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl }
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
+    let miniUser = { _id: user._id, username: user.username, imgUrl: user.imgUrl }
+    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(miniUser))
     return user
 }
 

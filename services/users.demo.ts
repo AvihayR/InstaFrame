@@ -11,3 +11,5 @@ const demoUsers = [
         following: [],
     }
 ]
+
+export default demoUsers

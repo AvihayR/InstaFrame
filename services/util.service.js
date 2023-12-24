@@ -6,7 +6,9 @@ export const utilService = {
     getRandomFloat,
     debounce,
     timeAgo,
-    formatDate
+    formatDate,
+    loadFromStorage,
+    saveToStorage
 }
 
 function makeId(length = 6) {
@@ -89,4 +91,13 @@ function formatDate(date) {
     const year = date.getUTCFullYear()
 
     return `${month} ${day}, ${year}`
+}
+
+function loadFromStorage(key) {
+    const data = localStorage.getItem(key)
+    return (data) ? JSON.parse(data) : undefined
+}
+
+function saveToStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value))
 }

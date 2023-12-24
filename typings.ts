@@ -15,3 +15,22 @@ export interface Comment {
     postedAt: number
     likedBy: string[]
 }
+
+export interface User {
+    _id: string
+    fullname: string,
+    username: string,
+    password: string,
+    imgUrl: string,
+    bio: string,
+    posts: Post[],
+    followers: Followers[],
+    following: Followers[],
+}
+
+export interface Followers {
+    _id: string
+    username: string
+    fullname: string
+    imgUrl: string
+}

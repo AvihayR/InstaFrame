@@ -19,10 +19,8 @@ async function getPosts(): Promise<Post[]> {
 }
 
 async function _createPosts() {
-    console.log('Create posts - start');
     let res = await storageService.query(STORAGE_KEY)
     if (!res || !res.length) {
         storageService.insertMany(STORAGE_KEY, demoPosts)
     }
-    console.log('Create posts - end');
 }

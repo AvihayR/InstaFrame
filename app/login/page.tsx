@@ -70,12 +70,12 @@ export default function LoginPage() {
                         {isSignUpMode ?
                             <>
                                 <h1>Already have an account?</h1>
-                                <Link href="" className="text-sky-400 ml-1" onClick={toggleSignUpLogin}>Sign in</Link>
+                                <Link href="" className="text-sky-400 ml-2" onClick={toggleSignUpLogin}>Sign in</Link>
                             </>
                             :
                             <>
                                 <h1>Don't have an account yet?</h1>
-                                <Link href="" className="text-sky-400 ml-1" onClick={toggleSignUpLogin}>Signup</Link>
+                                <Link href="" className="text-sky-400 ml-2" onClick={toggleSignUpLogin}>Sign up</Link>
                             </>
                         }
                     </div>

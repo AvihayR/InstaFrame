@@ -56,10 +56,12 @@ async function login(userCred: { username: string, password: string }) {
 }
 
 async function signup(userCred: User) {
-    if (!userCred.imgUrl) userCred.imgUrl = 'https://res.cloudinary.com/dgsfbxsed/image/upload/v1698775961/user-96_hcptba.png'
+    const { username, password } = userCred
+    if (!userCred.imgUrl) userCred.imgUrl = 'https://res.cloudinary.com/dfg5z7qzb/image/upload/v1703238277/profile-img_sll1p9.jpg'
     const user = await storageService.post('user', userCred)
+    return await login({ username, password })
     // const user = await httpService.post('auth/signup', userCred)
-    return saveLocalUser(user as User)
+    // return saveLocalUser(user as User)
 }
 
 async function logout() {
@@ -85,16 +87,15 @@ function getLoggedinUser() {
 
 function getEmptyUser() {
     return {
+        _id: utilService.makeId(),
         fullname: '',
         username: '',
         password: '',
-        desc: '',
-        isSeller: '',
-        location: 'Israel',
-        rate: utilService.getRandomFloat(4.5, 5),
-        reviews: [],
-        lang: ["English", "Hebrew"],
-        level: 1
+        imgUrl: '',
+        bio: '',
+        posts: [],
+        followers: [],
+        following: [],
     }
 }
 

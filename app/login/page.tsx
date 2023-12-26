@@ -43,20 +43,20 @@ export default function LoginPage() {
                 </>
                 :
                 <>
-                    <form className="login-form grid place-items-center border border-zinc-800 p-10 mt-28" action={onLogin}>
+                    <form className="login-form grid place-items-center border p-10 mt-28 dark:border-zinc-800" action={onLogin}>
                         <div className="inputs-container grid">
                             <h1 className={`text-3xl mx-auto mb-9 ${instaFont.className}`}>InstaFrame</h1>
-                            <input className="mb-2 w-60 bg-zinc-800 text-xs p-2 border border-zinc-900 rounded" type="text" name="username" placeholder="Username or email" />
-                            {isSignUpMode && <input className="mb-2 w-60 bg-zinc-800 text-xs p-2 border border-zinc-900 rounded" type="text" name="username" placeholder="Full name" />}
-                            <input className="mb-5 w-60 bg-zinc-800 text-xs p-2 border border-zinc-900 rounded" type="text" name="password" placeholder="Password" />
+                            <input className="mb-2 w-60 text-xs p-2 border rounded dark:bg-zinc-800 dark:border-zinc-900" type="text" name="username" placeholder="Username or email" />
+                            {isSignUpMode && <input className="mb-2 w-60 text-xs p-2 border rounded dark:bg-zinc-800 dark:border-zinc-900" type="text" name="username" placeholder="Full name" />}
+                            <input className="mb-5 w-60 text-xs p-2 border rounded dark:border-zinc-900 dark:bg-zinc-800" type="text" name="password" placeholder="Password" />
                             {isSignUpMode ?
-                                <button className="font-medium text-sm bg-sky-400 rounded-md p-1 mx-1" type="submit">Sign up</button>
+                                <button className="font-medium text-sm bg-sky-400 rounded-md p-1 mx-1 text-slate-100 dark:text-black" type="submit">Sign up</button>
                                 :
-                                <button className="font-medium text-sm bg-sky-400 rounded-md p-1 mx-1" type="submit">Login</button>}
+                                <button className="font-medium text-sm bg-sky-400 rounded-md p-1 mx-1 text-slate-100 dark:text-black" type="submit">Login</button>}
 
                         </div>
                     </form>
-                    <div className="switch-method flex justify-center border border-zinc-800 p-5 mt-2 text-sm">
+                    <div className="switch-method flex justify-center border p-5 mt-2 text-sm dark:border-zinc-800">
                         {isSignUpMode ?
                             <>
                                 <h1>Already have an account?</h1>

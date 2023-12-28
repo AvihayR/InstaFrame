@@ -1,11 +1,24 @@
 .comment-container {
     .comment {
 
-        .user-container h3,
-        .caption {
+        .text-container {
             font-size: rem(13px);
-            line-height: 1;
-            margin-top: 2px;
+
+            .username,
+            .text {
+                line-height: 1;
+                margin-block-start: rem(2px);
+            }
+
+            .username {
+                margin-inline-end: rem(6px);
+            }
+        }
+
+
+        .lower-comment {
+            line-height: 1rem;
+            margin-block-start: rem(7px);
         }
     }
 }

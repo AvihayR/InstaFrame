@@ -20,19 +20,18 @@ export function CommentPreview({ comment, onLikeComment }: CommentProps) {
             <article className='comment flex items-start'>
                 {comment?.by && <Image className='profile-img cursor-pointer rounded-3xl' src={comment.by.imgUrl} width={30} height={30} alt='Profile image' />}
                 <div className="caption-container grid ms-2">
-                    <div className="user-container flex items-end">
-                        {comment?.by && <h3 className='font-medium text-sm cursor-pointer leading-none hover:text-gray-400'>{comment.by.username}</h3>}
-                    </div>
-
-                    {comment?.txt &&
-                        <span className='caption text-sm'>
-                            <TxtBreaks str={comment.txt} />
-                        </span>}
+                    <p className="text-container">
+                        {comment?.by && <span className='username font-medium cursor-pointer leading-none hover:text-gray-400'>{comment.by.username}</span>}
+                        {comment?.txt &&
+                            <span className='text'>
+                                <TxtBreaks str={comment.txt} />
+                            </span>}
+                    </p>
 
                     <div className="lower-comment flex items-center">
                         {comment?.postedAt && <span className='time-ago text-xs font-thin leading-none text-gray-400'>{timeAgo(comment.postedAt)}</span>}
                         {comment?.likedBy && comment.likedBy.length > 0 && <span className="liked-by text-xs font-medium text-gray-400 ms-2">
-                            {`${comment.likedBy.length} likes`}
+                            {`${comment.likedBy.length} like${comment.likedBy.length > 1 ? 's' : ''}`}
                         </span>}
                     </div>
 

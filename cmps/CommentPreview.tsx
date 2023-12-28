@@ -7,7 +7,7 @@ interface CommentProps {
     comment: Comment | undefined
 }
 
-export function Comment({ comment }: CommentProps) {
+export function CommentPreview({ comment }: CommentProps) {
     const { timeAgo } = utilService
 
     return (

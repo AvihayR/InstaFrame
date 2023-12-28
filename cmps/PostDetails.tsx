@@ -3,7 +3,7 @@ import { Post } from '../typings'
 import { PostHeading } from './PostHeading'
 import { utilService } from '@/services/util.service'
 import { TxtBreaks } from './TxtBreaks'
-import { Comment } from './Comment'
+import { CommentList } from './CommentList'
 
 interface PostDetailsProps {
     post: Post | null
@@ -37,7 +37,7 @@ export function PostDetails({ post }: PostDetailsProps) {
                         {post?.postedAt && <span className='time-ago mt-1 text-xs font-thin leading-none text-gray-400'>{timeAgo(post.postedAt)}</span>}
                     </div>
                 </article>
-                <Comment comment={post?.comments[0]} />
+                <CommentList comments={post?.comments} />
             </section>
         </div>
     )

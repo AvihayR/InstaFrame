@@ -1,8 +1,8 @@
 .comment-container {
     .comment {
-
         .text-container {
             font-size: rem(13px);
+            width: 95%;
 
             .username,
             .text {
@@ -15,10 +15,18 @@
             }
         }
 
-
         .lower-comment {
             line-height: 1rem;
             margin-block-start: rem(7px);
+        }
+    }
+
+    .like-btn {
+        height: rem(22px);
+
+        .heart-icon {
+            width: rem(14px);
+            height: rem(14px);
         }
     }
 }

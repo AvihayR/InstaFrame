@@ -16,7 +16,7 @@ export function CommentPreview({ comment, onLikeComment }: CommentProps) {
     const { timeAgo } = utilService
 
     return (
-        <div className="comment-container px-4 py-3 flex items-center justify-between">
+        <div className="comment-container px-4 py-3 flex items-start justify-between">
             <article className='comment flex items-start'>
                 {comment?.by && <Image className='profile-img cursor-pointer rounded-3xl' src={comment.by.imgUrl} width={30} height={30} alt='Profile image' />}
                 <div className="caption-container grid ms-2">
@@ -37,8 +37,8 @@ export function CommentPreview({ comment, onLikeComment }: CommentProps) {
 
                 </div>
             </article>
-            <button onClick={() => { onLikeComment(comment?.id as string) }}>
-                <HeartIcon className="w-3 h-3" />
+            <button className="like-btn" onClick={() => { onLikeComment(comment?.id as string) }}>
+                <HeartIcon className="heart-icon" />
             </button>
         </div>
     )

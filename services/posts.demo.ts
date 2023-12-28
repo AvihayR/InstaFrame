@@ -18,6 +18,7 @@ const demoPosts = [
         postedAt: 1703279541434,
         "comments": [
             {
+                id: 'C222',
                 by: {
                     userId: "U2",
                     username: "iflwatches",
@@ -28,6 +29,7 @@ const demoPosts = [
                 postedAt: 1703755175512
             },
             {
+                id: 'C111',
                 by: {
                     userId: "U2",
                     username: "iflwatches",

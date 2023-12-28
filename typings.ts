@@ -10,6 +10,7 @@ export interface Post {
     postedAt: number
 }
 export interface Comment {
+    id: string
     by: { userId: string, username: string, imgUrl: string }
     txt: string
     postedAt: number

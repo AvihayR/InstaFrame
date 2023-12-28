@@ -3,11 +3,12 @@ import { CommentPreview } from './CommentPreview'
 
 interface CommentListProps {
     comments: Comment[] | undefined
+    onLikeComment: (commentId: string) => Promise<void>
 }
 
-export function CommentList({ comments }: CommentListProps) {
+export function CommentList({ comments, onLikeComment }: CommentListProps) {
 
     return (
-        comments?.map(comment => <CommentPreview comment={comment} />)
+        comments?.map(comment => <CommentPreview key={comment.by + comment.postedAt.toString()} comment={comment} onLikeComment={onLikeComment} />)
     )
 }

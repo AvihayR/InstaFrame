@@ -4,6 +4,8 @@ import { PostHeading } from './PostHeading'
 import { utilService } from '@/services/util.service'
 import { TxtBreaks } from './TxtBreaks'
 import { CommentList } from './CommentList'
+import { postService } from '@/services/post.service.local'
+import { userService } from '@/services/user.service.local'
 
 interface PostDetailsProps {
     post: Post | null
@@ -12,6 +14,11 @@ interface PostDetailsProps {
 export function PostDetails({ post }: PostDetailsProps) {
     const { timeAgo } = utilService
 
+    async function onLikeComment(commentId: string) {
+        let loggedUser = await userService.getLoggedinUser()
+        if (post && loggedUser) postService.likeComment(post._id, commentId, loggedUser._id)
+        else console.log('Log in to like a comment')
+    }
 
     return (
         <div className="post-details flex justify-center">
@@ -37,7 +44,7 @@ export function PostDetails({ post }: PostDetailsProps) {
                         {post?.postedAt && <span className='time-ago mt-1 text-xs font-thin leading-none text-gray-400'>{timeAgo(post.postedAt)}</span>}
                     </div>
                 </article>
-                <CommentList comments={post?.comments} />
+                <CommentList comments={post?.comments} onLikeComment={onLikeComment} />
             </section>
         </div>
     )

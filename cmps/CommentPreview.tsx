@@ -38,7 +38,7 @@ export function CommentPreview({ comment, onLikeComment }: CommentProps) {
                 </div>
             </article>
             <button className="like-btn" onClick={() => { onLikeComment(comment?.id as string) }}>
-                <HeartIcon className="heart-icon" />
+                <HeartIcon isLiked={false} className="heart-icon" />
             </button>
         </div>
     )

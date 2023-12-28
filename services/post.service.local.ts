@@ -12,6 +12,7 @@ export const postService = {
     getPostById,
     save,
     likeComment,
+    unLikeComment
 }
 
 _createPosts()
@@ -48,6 +49,17 @@ async function likeComment(postId: string, commentId: string, userId: string) {
 
     if (!commentToLike?.likedBy.includes(userId)) {
         commentToLike?.likedBy.push(userId)
+        await save(post)
+    }
+}
+
+async function unLikeComment(postId: string, commentId: string, userId: string) {
+    const post = await getPostById(postId)
+    const comment = post.comments.find(comment => comment.id === commentId)
+
+    if (comment?.likedBy.includes(userId)) {
+        const likedIndex = comment?.likedBy.findIndex(like => like === userId)
+        comment?.likedBy.splice(likedIndex, 1)
         await save(post)
     }
 }

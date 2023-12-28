@@ -1,4 +1,3 @@
-"use client"
 import Image from "next/image"
 import { TxtBreaks } from "./TxtBreaks"
 import { utilService } from "@/services/util.service"
@@ -6,17 +5,30 @@ import { Comment } from '../typings'
 import HeartIcon from "./icons/HeartIcon"
 import { userService } from "@/services/user.service.local"
 import { postService } from "@/services/post.service.local"
+import { useEffect, useState } from "react"
 
 interface CommentProps {
     comment: Comment | undefined
     onLikeComment: (commentId: string) => Promise<void>
+    onUnLikeComment: (commentId: string) => Promise<void>
 }
 
-export function CommentPreview({ comment, onLikeComment }: CommentProps) {
+export function CommentPreview({ comment, onLikeComment, onUnLikeComment }: CommentProps) {
     const { timeAgo } = utilService
+    const loggedUser = userService.getLoggedinUser()
+    const [isCommentLiked, setIsCommentLiked] = useState<boolean>(false)
+
+    useEffect(() => {
+        if (comment !== undefined) setIsCommentLiked(comment.likedBy.includes(loggedUser._id))
+    }, [])
+
+    async function toggleLike() {
+        isCommentLiked ? onUnLikeComment(comment?.id as string) : onLikeComment(comment?.id as string)
+        setIsCommentLiked(prevState => !prevState)
+    }
 
     return (
-        <div className="comment-container px-4 py-3 flex items-start justify-between">
+        <div className="comment-container px-4 py-3 flex items-start justify-between gap-4">
             <article className='comment flex items-start'>
                 {comment?.by && <Image className='profile-img cursor-pointer rounded-3xl' src={comment.by.imgUrl} width={30} height={30} alt='Profile image' />}
                 <div className="caption-container grid ms-2">
@@ -37,8 +49,8 @@ export function CommentPreview({ comment, onLikeComment }: CommentProps) {
 
                 </div>
             </article>
-            <button className="like-btn" onClick={() => { onLikeComment(comment?.id as string) }}>
-                <HeartIcon isLiked={false} className="heart-icon" />
+            <button className="like-btn" onClick={toggleLike}>
+                <HeartIcon isLiked={isCommentLiked} className="heart-icon" />
             </button>
         </div>
     )

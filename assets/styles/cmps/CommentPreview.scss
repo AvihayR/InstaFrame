@@ -2,7 +2,7 @@
     .comment {
         .text-container {
             font-size: rem(13px);
-            width: 95%;
+            // width: 95%;
 
             .username,
             .text {
@@ -17,7 +17,7 @@
 
         .lower-comment {
             line-height: 1rem;
-            margin-block-start: rem(7px);
+            margin-block-start: rem(4px);
         }
     }
 
@@ -25,8 +25,16 @@
         height: rem(22px);
 
         .heart-icon {
-            width: rem(14px);
-            height: rem(14px);
+            width: rem(13px);
+            height: rem(13px);
+
+            &.liked {
+                fill: $like-red;
+            }
+
+            &:not(.liked):hover {
+                fill: gray;
+            }
         }
     }
 }

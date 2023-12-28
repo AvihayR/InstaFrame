@@ -20,6 +20,12 @@ export function PostDetails({ post }: PostDetailsProps) {
         else console.log('Log in to like a comment')
     }
 
+    async function onUnLikeComment(commentId: string) {
+        let loggedUser = await userService.getLoggedinUser()
+        if (post && loggedUser) postService.unLikeComment(post._id, commentId, loggedUser._id)
+        else console.log('Log in to unlike a comment')
+    }
+
     return (
         <div className="post-details flex justify-center">
 
@@ -44,7 +50,7 @@ export function PostDetails({ post }: PostDetailsProps) {
                         {post?.postedAt && <span className='time-ago mt-1 text-xs font-thin leading-none text-gray-400'>{timeAgo(post.postedAt)}</span>}
                     </div>
                 </article>
-                <CommentList comments={post?.comments} onLikeComment={onLikeComment} />
+                <CommentList comments={post?.comments} onLikeComment={onLikeComment} onUnLikeComment={onUnLikeComment} />
             </section>
         </div>
     )

@@ -10,7 +10,7 @@ export interface Post {
     postedAt: number
 }
 export interface Comment {
-    by: { username: string, userImg: string }
+    by: { userId: string, username: string, imgUrl: string }
     txt: string
     postedAt: number
     likedBy: string[]

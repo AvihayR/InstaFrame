@@ -3,6 +3,7 @@ import { Post } from '../typings'
 import { PostHeading } from './PostHeading'
 import { utilService } from '@/services/util.service'
 import { TxtBreaks } from './TxtBreaks'
+import { Comment } from './Comment'
 
 interface PostDetailsProps {
     post: Post | null
@@ -28,15 +29,15 @@ export function PostDetails({ post }: PostDetailsProps) {
                     <div className="caption-container grid ms-2">
                         <div className="user-container flex items-end">
                             {post?.by && <h3 className='font-medium text-sm cursor-pointer leading-none hover:text-gray-400'>{post.by.username}</h3>}
-                            {post?.postedAt && <span className='time-ago ms-1.5 text-xs font-thin leading-none text-gray-400'>{timeAgo(post.postedAt)}</span>}
                         </div>
                         {post?.caption &&
                             <span className='caption text-sm'>
                                 <TxtBreaks str={post.caption} />
                             </span>}
+                        {post?.postedAt && <span className='time-ago mt-1 text-xs font-thin leading-none text-gray-400'>{timeAgo(post.postedAt)}</span>}
                     </div>
-
                 </article>
+                <Comment comment={post?.comments[0]} />
             </section>
         </div>
     )

@@ -15,8 +15,29 @@ const demoPosts = [
         ],
         "vidUrls": [],
         "likedBy": [],
-        "comments": [],
-        postedAt: 1703279541434
+        postedAt: 1703279541434,
+        "comments": [
+            {
+                by: {
+                    userId: "U2",
+                    username: "iflwatches",
+                    imgUrl: "https://res.cloudinary.com/dfg5z7qzb/image/upload/v1703753787/ifl-warches-profile_hwzsdl.jpg",
+                },
+                txt: "Such an amazing automobile! 🌠",
+                likedBy: ['U1'],
+                postedAt: 1703755175512
+            },
+            {
+                by: {
+                    userId: "U2",
+                    username: "iflwatches",
+                    imgUrl: "https://res.cloudinary.com/dfg5z7qzb/image/upload/v1703753787/ifl-warches-profile_hwzsdl.jpg",
+                },
+                txt: "Would definitely love one in our collection 💘",
+                likedBy: ['U1'],
+                postedAt: 1703755175514
+            }
+        ],
     },
     {
         "_id": "p2",

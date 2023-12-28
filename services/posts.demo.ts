@@ -36,7 +36,7 @@ const demoPosts = [
                     imgUrl: "https://res.cloudinary.com/dfg5z7qzb/image/upload/v1703753787/ifl-warches-profile_hwzsdl.jpg",
                 },
                 txt: "Would definitely love one in our collection 💘",
-                likedBy: ['U1'],
+                likedBy: [],
                 postedAt: 1703755175514
             }
         ],

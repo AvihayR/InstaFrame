@@ -10,7 +10,8 @@ const STORAGE_KEY = 'postsDB'
 export const postService = {
     getPosts,
     getPostById,
-    likeComment
+    save,
+    likeComment,
 }
 
 _createPosts()
@@ -31,8 +32,22 @@ async function _createPosts() {
     }
 }
 
+async function save(post: Post) {
+    let savedPost
+    if (post._id) {
+        savedPost = await storageService.put(STORAGE_KEY, post)
+    } else {
+        savedPost = await storageService.post(STORAGE_KEY, post)
+    }
+    return savedPost
+}
+
 async function likeComment(postId: string, commentId: string, userId: string) {
     const post = await getPostById(postId)
     const commentToLike = post.comments.find(comment => comment.id === commentId)
-    commentToLike?.likedBy.push(userId)
+
+    if (!commentToLike?.likedBy.includes(userId)) {
+        commentToLike?.likedBy.push(userId)
+        await save(post)
+    }
 }

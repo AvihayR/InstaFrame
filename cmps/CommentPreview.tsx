@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import { TxtBreaks } from "./TxtBreaks"
 import { utilService } from "@/services/util.service"
@@ -26,7 +27,12 @@ export function CommentPreview({ comment, onLikeComment }: CommentProps) {
                         <span className='caption text-sm'>
                             <TxtBreaks str={comment.txt} />
                         </span>}
-                    {comment?.postedAt && <span className='time-ago mt-1 text-xs font-thin leading-none text-gray-400'>{timeAgo(comment.postedAt)}</span>}
+                    <div className="lower-comment flex items-center mt-1">
+                        {comment?.postedAt && <span className='time-ago text-xs font-thin leading-none text-gray-400'>{timeAgo(comment.postedAt)}</span>}
+                        {comment?.likedBy && comment.likedBy.length > 0 && <span className="liked-by text-xs font-medium text-gray-400 ms-2">
+                            {`${comment.likedBy.length} likes`}
+                        </span>}
+                    </div>
                 </div>
             </article>
             <button onClick={() => { onLikeComment(comment?.id as string) }}>

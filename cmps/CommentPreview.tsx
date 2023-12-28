@@ -23,16 +23,19 @@ export function CommentPreview({ comment, onLikeComment }: CommentProps) {
                     <div className="user-container flex items-end">
                         {comment?.by && <h3 className='font-medium text-sm cursor-pointer leading-none hover:text-gray-400'>{comment.by.username}</h3>}
                     </div>
+
                     {comment?.txt &&
                         <span className='caption text-sm'>
                             <TxtBreaks str={comment.txt} />
                         </span>}
-                    <div className="lower-comment flex items-center mt-1">
+
+                    <div className="lower-comment flex items-center">
                         {comment?.postedAt && <span className='time-ago text-xs font-thin leading-none text-gray-400'>{timeAgo(comment.postedAt)}</span>}
                         {comment?.likedBy && comment.likedBy.length > 0 && <span className="liked-by text-xs font-medium text-gray-400 ms-2">
                             {`${comment.likedBy.length} likes`}
                         </span>}
                     </div>
+
                 </div>
             </article>
             <button onClick={() => { onLikeComment(comment?.id as string) }}>

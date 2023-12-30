@@ -6,23 +6,32 @@ import { TxtBreaks } from './TxtBreaks'
 import { CommentList } from './CommentList'
 import { postService } from '@/services/post.service.local'
 import { userService } from '@/services/user.service.local'
+import { UPDATE_POST } from '@/store/reducers/posts.reducer'
+import { useDispatch } from 'react-redux'
+const { timeAgo } = utilService
 
 interface PostDetailsProps {
     post: Post | null
 }
 
 export function PostDetails({ post }: PostDetailsProps) {
-    const { timeAgo } = utilService
+    const dispatch = useDispatch()
 
     async function onLikeComment(commentId: string) {
         let loggedUser = await userService.getLoggedinUser()
-        if (post && loggedUser) postService.likeComment(post._id, commentId, loggedUser._id)
+        if (post && loggedUser) {
+            const updatedPost = await postService.likeComment(post._id, commentId, loggedUser._id)
+            dispatch({ type: UPDATE_POST, post: updatedPost })
+        }
         else console.log('Log in to like a comment')
     }
 
     async function onUnLikeComment(commentId: string) {
         let loggedUser = await userService.getLoggedinUser()
-        if (post && loggedUser) postService.unLikeComment(post._id, commentId, loggedUser._id)
+        if (post && loggedUser) {
+            const updatedPost = await postService.unLikeComment(post._id, commentId, loggedUser._id)
+            dispatch({ type: UPDATE_POST, post: updatedPost })
+        }
         else console.log('Log in to unlike a comment')
     }
 

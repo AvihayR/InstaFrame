@@ -51,6 +51,8 @@ async function likeComment(postId: string, commentId: string, userId: string) {
         commentToLike?.likedBy.push(userId)
         await save(post)
     }
+
+    return post
 }
 
 async function unLikeComment(postId: string, commentId: string, userId: string) {
@@ -62,4 +64,6 @@ async function unLikeComment(postId: string, commentId: string, userId: string) 
         comment?.likedBy.splice(likedIndex, 1)
         await save(post)
     }
+
+    return post
 }

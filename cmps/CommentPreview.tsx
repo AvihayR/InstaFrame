@@ -20,6 +20,7 @@ export function CommentPreview({ comment, onLikeComment, onUnLikeComment }: Comm
 
     useEffect(() => {
         if (comment !== undefined) setIsCommentLiked(comment.likedBy.includes(loggedUser?._id))
+        console.log('Render Comment')
     }, [])
 
     async function toggleLike() {

@@ -9,6 +9,7 @@ import { userService } from '@/services/user.service.local'
 import { SET_CHOSEN_POST, UPDATE_POST } from '@/store/reducers/posts.reducer'
 import { useDispatch } from 'react-redux'
 import { PostActionsBar } from './PostActionsBar'
+import { LikesCounter } from './LikesCounter'
 const { timeAgo } = utilService
 
 interface PostDetailsProps {
@@ -47,10 +48,10 @@ export function PostDetails({ post }: PostDetailsProps) {
                 </div>
             )}
 
-            <section className='comments-section'>
+            <section className='comments-section flex flex-col'>
                 <PostHeading post={post} />
 
-                <div className="comment-list">
+                <div className="comment-list mb-auto">
                     <article className='post-caption flex items-start px-4 py-3'>
                         {post?.by && <Image className='profile-img cursor-pointer rounded-3xl' src={post.by.userImg} width={30} height={30} alt='Profile image' />}
                         <div className="caption-container grid ms-2">
@@ -66,8 +67,11 @@ export function PostDetails({ post }: PostDetailsProps) {
                     </article>
                     <CommentList comments={post?.comments} onLikeComment={onLikeComment} onUnLikeComment={onUnLikeComment} />
                 </div>
+                <div className="actions-container">
+                    <PostActionsBar />
+                    <LikesCounter />
 
-                <PostActionsBar />
+                </div>
             </section>
         </div>
     )

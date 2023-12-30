@@ -12,7 +12,7 @@ export function PostActionsBar() {
 
     return (
         <div className="action-bar flex">
-            {actions.map(action => <button key={action.name} className="action-btn">
+            {actions.map(action => <button key={action.name} className="action-btn hover:text-gray-400">
                 {action.icon}
             </button>)}
         </div>

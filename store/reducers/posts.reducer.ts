@@ -7,10 +7,10 @@ export const UPDATE_POST = 'UPDATE_POST'
 // export const SET_FILTER_BY = 'SET_FILTER_BY'
 
 interface Action {
-    type?: string
-    post?: Post
-    posts?: Post[]
-    postId?: string
+    type: string
+    post: Post
+    posts: Post[]
+    postId: string
 }
 
 const initialState: PostState = {
@@ -18,7 +18,7 @@ const initialState: PostState = {
     lastRemovedPost: null
 }
 
-export function postReducer(state = initialState, action: Action = {}) {
+export function postReducer(state = initialState, action: Action) {
     let tempPosts: Post[] = []
     let newState = state
 

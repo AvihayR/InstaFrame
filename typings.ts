@@ -50,11 +50,17 @@ export interface Followers {
 
 
 //Redux store types:
-export interface PostState {
-    posts: Post[]
-    lastRemovedPost: Post | null
+
+export interface RootState {
+    systemModule: SystemState;
+    postModule: PostState;
 }
 
 export interface SystemState {
     isPostModalShown: boolean
+}
+
+export interface PostState {
+    posts: Post[]
+    lastRemovedPost: Post | null
 }

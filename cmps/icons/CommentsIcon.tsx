@@ -2,7 +2,7 @@ interface CommentsIconProps extends React.SVGProps<SVGSVGElement> {
     isFilled?: boolean
 }
 
-const FilledCommentsIcon: React.FC<CommentsIconProps> = (props) => (
+const CommentsIcon: React.FC<CommentsIconProps> = (props) => (
     props.isFilled ?
         <svg aria-label="Comment" fill="currentColor" height="24px" role="img" viewBox="0 0 24 24" width="24px">
             <title>Comments</title>
@@ -16,4 +16,4 @@ const FilledCommentsIcon: React.FC<CommentsIconProps> = (props) => (
         </svg>
 )
 
-export default FilledCommentsIcon
+export default CommentsIcon

@@ -1,9 +1,11 @@
 import CommentsIcon from "./icons/CommentsIcon"
 import HeartIcon from "./icons/HeartIcon"
+import SaveIcon from "./icons/SaveIcon"
 
 const actions = [
     { name: 'like', icon: <HeartIcon /> },
-    { name: 'comment', icon: <CommentsIcon /> }
+    { name: 'comment', icon: <CommentsIcon /> },
+    { name: 'save', icon: <SaveIcon /> }
 ]
 
 export function PostActionsBar() {

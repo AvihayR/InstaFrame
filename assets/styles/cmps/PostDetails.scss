@@ -38,6 +38,26 @@
 
             }
         }
+
+        .action-bar {
+            padding-inline: 1rem;
+            padding-block-start: rem(6px);
+            padding-block-end: .5rem;
+
+
+            .action-btn {
+                padding: .5rem;
+            }
+
+            .action-btn:first-of-type {
+                padding-inline-start: 0;
+            }
+
+            .action-btn:last-of-type {
+                margin-inline-start: auto;
+                padding-inline-end: 0;
+            }
+        }
     }
 }
 

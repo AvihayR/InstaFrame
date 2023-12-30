@@ -1,7 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { systemReducer } from './reducers/system.reducer'
-// Import your reducers here
-// import { gigReducer } from './reducers/gig.reducer.js'
+import { postReducer } from './reducers/posts.reducer'
 // import { userReducer } from './user.reducer.js'
 // import { reviewReducer } from './review.reducer'
 // import { systemReducer } from './system.reducer'
@@ -14,15 +13,12 @@ declare global {
 }
 
 const rootReducer = combineReducers({
-    // Add your reducers here
     systemModule: systemReducer,
+    postModule: postReducer,
     // userModule: userReducer,
-    // reviewModule: reviewReducer,
-    // gigModule: gigReducer,
-    // orderModule: orderReducer,
 })
 
-let middleware = applyMiddleware(/* Add your middleware here if needed */);
+let middleware = applyMiddleware(/* Add your middleware here if needed */)
 
 // Check if running on the client side
 if (typeof window !== 'undefined') {

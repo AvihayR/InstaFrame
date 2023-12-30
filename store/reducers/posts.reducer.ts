@@ -1,4 +1,4 @@
-import { Post } from "@/typings"
+import { Post, PostState } from "@/typings"
 
 export const SET_POSTS = 'SET_POSTS'
 export const ADD_POST = 'ADD_POST'
@@ -13,12 +13,7 @@ interface Action {
     postId?: string
 }
 
-interface State {
-    posts: Post[]
-    lastRemovedPost: Post | null
-}
-
-const initialState: State = {
+const initialState: PostState = {
     posts: [],
     lastRemovedPost: null
 }

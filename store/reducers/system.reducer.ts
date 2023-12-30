@@ -1,3 +1,5 @@
+import { SystemState } from "@/typings"
+
 export const SHOW_MODAL = 'SHOW_MODAL'
 export const HIDE_MODAL = 'HIDE_MODAL'
 export const SET_IS_MODAL_OPEN = 'SET_IS_MODAL_OPEN'
@@ -7,7 +9,7 @@ interface Action {
     isShown?: boolean
 }
 
-const initialState = {
+const initialState: SystemState = {
     isPostModalShown: false,
 }
 

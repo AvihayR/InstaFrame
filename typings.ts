@@ -47,3 +47,14 @@ export interface Followers {
     fullname: string
     imgUrl: string
 }
+
+
+//Redux store types:
+export interface PostState {
+    posts: Post[]
+    lastRemovedPost: Post | null
+}
+
+export interface SystemState {
+    isPostModalShown: boolean
+}

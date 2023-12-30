@@ -41,7 +41,7 @@ export function CommentPreview({ comment, onLikeComment, onUnLikeComment }: Comm
                     </p>
 
                     <div className="lower-comment flex items-center">
-                        {comment?.postedAt && <span className='time-ago text-xs font-thin leading-none text-gray-400'>{timeAgo(comment.postedAt)}</span>}
+                        {comment?.postedAt && <span className='time-ago text-xs font-thin leading-4 text-gray-400'>{timeAgo(comment.postedAt)}</span>}
                         {comment?.likedBy && comment.likedBy.length > 0 && <span className="liked-by text-xs font-medium text-gray-400 ms-2">
                             {`${comment.likedBy.length} like${comment.likedBy.length > 1 ? 's' : ''}`}
                         </span>}

@@ -10,6 +10,7 @@ import { SET_CHOSEN_POST, UPDATE_POST } from '@/store/reducers/posts.reducer'
 import { useDispatch } from 'react-redux'
 import { PostActionsBar } from './PostActionsBar'
 import { LikesCounter } from './LikesCounter'
+import { useRef } from 'react'
 const { timeAgo } = utilService
 
 interface PostDetailsProps {
@@ -67,10 +68,12 @@ export function PostDetails({ post }: PostDetailsProps) {
                     </article>
                     <CommentList comments={post?.comments} onLikeComment={onLikeComment} onUnLikeComment={onUnLikeComment} />
                 </div>
-                <div className="actions-container">
+                <div className="actions-container flex flex-col">
                     <PostActionsBar />
                     <LikesCounter />
-
+                    <span className='posted-at mx-4 text-xs text-gray-400 mb-4'>
+                        {post && utilService.formatDate(new Date(post.postedAt))}
+                    </span>
                 </div>
             </section>
         </div>

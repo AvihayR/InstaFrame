@@ -1,10 +1,13 @@
 import { Post, PostState } from "@/typings"
-
+// POSTS
 export const SET_POSTS = 'SET_POSTS'
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_POST'
 export const UPDATE_POST = 'UPDATE_POST'
 // export const SET_FILTER_BY = 'SET_FILTER_BY'
+//CHOSEN POST
+export const SET_CHOSEN_POST = 'SET_CHOSEN_POST'
+export const UNSET_CHOSEN_POST = 'UNSET_CHOSEN_POST'
 
 interface Action {
     type: string
@@ -15,6 +18,7 @@ interface Action {
 
 const initialState: PostState = {
     posts: [],
+    chosenPost: null,
     lastRemovedPost: null
 }
 
@@ -46,6 +50,17 @@ export function postReducer(state = initialState, action: Action) {
                 newState = { ...state, posts: tempPosts }
             }
             break
+
+        case SET_CHOSEN_POST:
+            if (action.post) {
+                newState = { ...state, chosenPost: action.post }
+            }
+            break
+
+        case UNSET_CHOSEN_POST:
+            newState = { ...state, chosenPost: null }
+            break
+
         default:
     }
     return newState

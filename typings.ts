@@ -61,6 +61,7 @@ export interface SystemState {
 }
 
 export interface PostState {
-    posts: Post[]
+    posts: Post[],
+    chosenPost: null | Post
     lastRemovedPost: Post | null
 }

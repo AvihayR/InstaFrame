@@ -10,14 +10,16 @@ import { RootStoreState } from '../../store/store'
 import { SET_IS_MODAL_OPEN } from '@/store/reducers/system.reducer'
 import { PostDetails } from '@/cmps/PostDetails'
 import { userService } from '@/services/user.service.local'
-import { SET_POSTS } from '@/store/reducers/posts.reducer'
+import { SET_CHOSEN_POST, SET_POSTS, UNSET_CHOSEN_POST } from '@/store/reducers/posts.reducer'
 
 
 export default function ExplorePage() {
     const dispatch = useDispatch()
     const posts = useSelector((storeState: RootStoreState) => storeState.postModule.posts)
     const isModalOpen = useSelector((storeState: RootStoreState) => storeState.systemModule.isPostModalShown) ?? false
-    const [chosenPost, setChosenPost] = useState<Post | null>(null)
+    const chosenPost = useSelector((storeState: RootStoreState) => storeState.postModule.chosenPost)
+    // const [chosenPost, setChosenPost] = useState<Post | null>(null)
+
 
 
     useEffect(() => {
@@ -38,6 +40,10 @@ export default function ExplorePage() {
 
     function setIsModalOpen(isShown: boolean) {
         dispatch({ type: SET_IS_MODAL_OPEN, isShown })
+    }
+
+    function setChosenPost(post: Post) {
+        dispatch({ type: SET_CHOSEN_POST, post })
     }
 
     function openPost(post: Post) {

@@ -1,10 +1,10 @@
+const { timeAgo } = utilService
 import Image from "next/image"
 import { TxtBreaks } from "./TxtBreaks"
 import { utilService } from "@/services/util.service"
 import { Comment } from '../typings'
 import HeartIcon from "./icons/HeartIcon"
 import { userService } from "@/services/user.service.local"
-import { postService } from "@/services/post.service.local"
 import { useEffect, useState } from "react"
 
 interface CommentProps {
@@ -14,7 +14,6 @@ interface CommentProps {
 }
 
 export function CommentPreview({ comment, onLikeComment, onUnLikeComment }: CommentProps) {
-    const { timeAgo } = utilService
     const loggedUser = userService.getLoggedinUser()
     const [isCommentLiked, setIsCommentLiked] = useState<boolean>(false)
 

@@ -19,7 +19,7 @@ export function CommentPreview({ comment, onLikeComment, onUnLikeComment }: Comm
     const [isCommentLiked, setIsCommentLiked] = useState<boolean>(false)
 
     useEffect(() => {
-        if (comment !== undefined) setIsCommentLiked(comment.likedBy.includes(loggedUser._id))
+        if (comment !== undefined) setIsCommentLiked(comment.likedBy.includes(loggedUser?._id))
     }, [])
 
     async function toggleLike() {
@@ -49,9 +49,9 @@ export function CommentPreview({ comment, onLikeComment, onUnLikeComment }: Comm
 
                 </div>
             </article>
-            <button className="like-btn" onClick={toggleLike}>
+            {loggedUser && <button className="like-btn" onClick={toggleLike}>
                 <HeartIcon isLiked={isCommentLiked} className="heart-icon" />
-            </button>
+            </button>}
         </div>
     )
 }

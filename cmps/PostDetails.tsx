@@ -8,6 +8,7 @@ import { postService } from '@/services/post.service.local'
 import { userService } from '@/services/user.service.local'
 import { SET_CHOSEN_POST, UPDATE_POST } from '@/store/reducers/posts.reducer'
 import { useDispatch } from 'react-redux'
+import { PostActionsBar } from './PostActionsBar'
 const { timeAgo } = utilService
 
 interface PostDetailsProps {
@@ -62,6 +63,7 @@ export function PostDetails({ post }: PostDetailsProps) {
                     </div>
                 </article>
                 <CommentList comments={post?.comments} onLikeComment={onLikeComment} onUnLikeComment={onUnLikeComment} />
+                <PostActionsBar />
             </section>
         </div>
     )

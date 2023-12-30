@@ -19,7 +19,7 @@ const ExplorePreview: React.FC<ExplorePreviewProps> = ({ post, openPost, isTall 
             )}
             <div className='img-backdrop bg-black absolute w-full h-full cursor-pointer transition delay-50 opacity-0' />
             <div className="icon-container flex comments absolute opacity-0 cursor-pointer">
-                <FilledCommentsIcon />
+                <FilledCommentsIcon isFilled={true} />
                 <span className='block mx-1'> {post.comments.length}</span>
             </div>
             <Image className="explore-img aspect-square object-cover" src={post.imgUrls[0]} alt='image' width={316} height={316} />

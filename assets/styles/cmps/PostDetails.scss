@@ -61,16 +61,16 @@
 
 
             .action-btn {
-                padding: .5rem;
+                margin: .5rem;
             }
 
             .action-btn:first-of-type {
-                padding-inline-start: 0;
+                margin-inline-start: 0;
             }
 
             .action-btn:last-of-type {
                 margin-inline-start: auto;
-                padding-inline-end: 0;
+                margin-inline-end: 0;
             }
         }
     }

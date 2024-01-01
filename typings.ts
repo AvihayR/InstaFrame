@@ -5,7 +5,7 @@ export interface Post {
     caption: string
     imgUrls: string[]
     vidUrls: string[]
-    likedBy: string[]
+    likedBy: Like[]
     comments: Comment[]
     postedAt: number
 }
@@ -15,6 +15,12 @@ export interface Comment {
     txt: string
     postedAt: number
     likedBy: string[]
+}
+
+export interface Like {
+    userId: string
+    username: string
+    imgUrl: string
 }
 
 export interface User {

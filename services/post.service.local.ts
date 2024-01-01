@@ -11,6 +11,7 @@ export const postService = {
     getPosts,
     getPostById,
     save,
+    likePost,
     likeComment,
     unLikeComment
 }
@@ -42,6 +43,17 @@ async function save(post: Post) {
     }
     return savedPost
 }
+
+async function likePost(postId: string, userId: string, username: string, imgUrl: string) {
+    const like = { userId, username, imgUrl }
+    const post = await getPostById(postId)
+
+    post.likedBy.unshift(like)
+    await save(post)
+
+    return post
+}
+
 
 async function likeComment(postId: string, commentId: string, userId: string) {
     const post = await getPostById(postId)

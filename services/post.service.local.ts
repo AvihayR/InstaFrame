@@ -12,6 +12,7 @@ export const postService = {
     getPostById,
     save,
     likePost,
+    unLikePost,
     likeComment,
     unLikeComment
 }
@@ -51,9 +52,20 @@ async function likePost(postId: string, userId: string) {
     if (isLiked) return post
     post.likedBy.unshift(userId)
     await save(post)
+
     return post
 }
 
+async function unLikePost(postId: string, userId: string) {
+    const post = await getPostById(postId)
+    const isLiked = new Set(post.likedBy).has(userId)
+
+    if (!isLiked) return post
+    const newLikes = post.likedBy.filter(id => id !== userId)
+    const postToReturn = await save({ ...post, likedBy: newLikes })
+
+    return postToReturn
+}
 
 async function likeComment(postId: string, commentId: string, userId: string) {
     const post = await getPostById(postId)

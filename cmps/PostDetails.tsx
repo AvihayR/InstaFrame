@@ -7,14 +7,15 @@ import { CommentList } from './CommentList'
 import { postService } from '@/services/post.service.local'
 import { userService } from '@/services/user.service.local'
 import { SET_CHOSEN_POST, UPDATE_POST } from '@/store/reducers/posts.reducer'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { PostActionsBar } from './PostActionsBar'
 import { LikesCounter } from './LikesCounter'
 import { useRef } from 'react'
+import { RootStoreState } from '@/store/store'
 const { timeAgo } = utilService
 
 interface PostDetailsProps {
-    post: Post
+    post: Post | null
 }
 
 export function PostDetails({ post }: PostDetailsProps) {
@@ -25,6 +26,19 @@ export function PostDetails({ post }: PostDetailsProps) {
 
         if (post && loggedUser) {
             const updatedPost = await postService.likePost(post._id, loggedUser._id)
+            //TODO: Add authentication validation before liking with logged user
+
+            dispatch({ type: UPDATE_POST, post: updatedPost })
+            dispatch({ type: SET_CHOSEN_POST, post: updatedPost })
+        }
+        else console.log('Log in to like a comment')
+    }
+
+    async function onUnLikePost() {
+        let loggedUser = await userService.getLoggedinUser()
+
+        if (post && loggedUser) {
+            const updatedPost = await postService.unLikePost(post._id, loggedUser._id)
             //TODO: Add authentication validation before liking with logged user
 
             dispatch({ type: UPDATE_POST, post: updatedPost })
@@ -86,7 +100,7 @@ export function PostDetails({ post }: PostDetailsProps) {
                     <CommentList comments={post?.comments} onLikeComment={onLikeComment} onUnLikeComment={onUnLikeComment} />
                 </div>
                 <div className="actions-container flex flex-col">
-                    <PostActionsBar post={post} onLikePost={onLikePost} />
+                    <PostActionsBar post={post as Post} onLikePost={onLikePost} onUnLikePost={onUnLikePost} />
                     <LikesCounter />
                     <span className='posted-at mx-4 text-xs text-gray-400 mb-4'>
                         {post && utilService.formatDate(new Date(post.postedAt))}

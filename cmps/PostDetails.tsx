@@ -20,8 +20,21 @@ interface PostDetailsProps {
 export function PostDetails({ post }: PostDetailsProps) {
     const dispatch = useDispatch()
 
+    async function onLikePost() {
+        let loggedUser = await userService.getLoggedinUser()
+
+        if (post && loggedUser) {
+            const updatedPost = await postService.likePost(post._id, loggedUser._id, loggedUser.username, loggedUser.imgUrl)
+            //TODO: Add authentication validation
+            dispatch({ type: UPDATE_POST, post: updatedPost })
+            dispatch({ type: SET_CHOSEN_POST, post: updatedPost })
+        }
+        else console.log('Log in to like a comment')
+    }
+
     async function onLikeComment(commentId: string) {
         let loggedUser = await userService.getLoggedinUser()
+        //TODO: Add authentication validation
         if (post && loggedUser) {
             const updatedPost = await postService.likeComment(post._id, commentId, loggedUser._id)
             dispatch({ type: UPDATE_POST, post: updatedPost })
@@ -32,6 +45,7 @@ export function PostDetails({ post }: PostDetailsProps) {
 
     async function onUnLikeComment(commentId: string) {
         let loggedUser = await userService.getLoggedinUser()
+        //TODO: Add authentication validation
         if (post && loggedUser) {
             const updatedPost = await postService.unLikeComment(post._id, commentId, loggedUser._id)
             dispatch({ type: UPDATE_POST, post: updatedPost })
@@ -69,7 +83,7 @@ export function PostDetails({ post }: PostDetailsProps) {
                     <CommentList comments={post?.comments} onLikeComment={onLikeComment} onUnLikeComment={onUnLikeComment} />
                 </div>
                 <div className="actions-container flex flex-col">
-                    <PostActionsBar />
+                    <PostActionsBar onLikePost={onLikePost} />
                     <LikesCounter />
                     <span className='posted-at mx-4 text-xs text-gray-400 mb-4'>
                         {post && utilService.formatDate(new Date(post.postedAt))}

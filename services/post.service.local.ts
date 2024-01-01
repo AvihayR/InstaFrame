@@ -48,6 +48,9 @@ async function likePost(postId: string, userId: string, username: string, imgUrl
     const like = { userId, username, imgUrl }
     const post = await getPostById(postId)
 
+    const existingLike = post.likedBy.find(l => l.userId === like.userId)
+    if (existingLike) return post
+
     post.likedBy.unshift(like)
     await save(post)
 

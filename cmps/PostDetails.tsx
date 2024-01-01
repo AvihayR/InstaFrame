@@ -24,8 +24,9 @@ export function PostDetails({ post }: PostDetailsProps) {
         let loggedUser = await userService.getLoggedinUser()
 
         if (post && loggedUser) {
-            const updatedPost = await postService.likePost(post._id, loggedUser._id, loggedUser.username, loggedUser.imgUrl)
-            //TODO: Add authentication validation
+            const updatedPost = await postService.likePost(post._id, loggedUser._id)
+            //TODO: Add authentication validation before liking with logged user
+
             dispatch({ type: UPDATE_POST, post: updatedPost })
             dispatch({ type: SET_CHOSEN_POST, post: updatedPost })
         }
@@ -34,7 +35,8 @@ export function PostDetails({ post }: PostDetailsProps) {
 
     async function onLikeComment(commentId: string) {
         let loggedUser = await userService.getLoggedinUser()
-        //TODO: Add authentication validation
+        //TODO: Add authentication validation before liking with logged user
+
         if (post && loggedUser) {
             const updatedPost = await postService.likeComment(post._id, commentId, loggedUser._id)
             dispatch({ type: UPDATE_POST, post: updatedPost })
@@ -45,7 +47,8 @@ export function PostDetails({ post }: PostDetailsProps) {
 
     async function onUnLikeComment(commentId: string) {
         let loggedUser = await userService.getLoggedinUser()
-        //TODO: Add authentication validation
+        //TODO: Add authentication validation before liking with logged user
+
         if (post && loggedUser) {
             const updatedPost = await postService.unLikeComment(post._id, commentId, loggedUser._id)
             dispatch({ type: UPDATE_POST, post: updatedPost })

@@ -46,14 +46,11 @@ async function save(post: Post) {
 
 async function likePost(postId: string, userId: string) {
     const post = await getPostById(postId)
-    // const like = { userId, username, imgUrl }
+    const isLiked = new Set(post.likedBy).has(userId)
 
-
-    if (new Set(post.likedBy).has(userId)) return post
-
+    if (isLiked) return post
     post.likedBy.unshift(userId)
     await save(post)
-
     return post
 }
 

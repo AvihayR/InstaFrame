@@ -14,7 +14,7 @@ import { useRef } from 'react'
 const { timeAgo } = utilService
 
 interface PostDetailsProps {
-    post: Post | null
+    post: Post
 }
 
 export function PostDetails({ post }: PostDetailsProps) {
@@ -86,7 +86,7 @@ export function PostDetails({ post }: PostDetailsProps) {
                     <CommentList comments={post?.comments} onLikeComment={onLikeComment} onUnLikeComment={onUnLikeComment} />
                 </div>
                 <div className="actions-container flex flex-col">
-                    <PostActionsBar onLikePost={onLikePost} />
+                    <PostActionsBar post={post} onLikePost={onLikePost} />
                     <LikesCounter />
                     <span className='posted-at mx-4 text-xs text-gray-400 mb-4'>
                         {post && utilService.formatDate(new Date(post.postedAt))}

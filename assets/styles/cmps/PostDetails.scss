@@ -62,6 +62,12 @@
 
             .action-btn {
                 margin: .5rem;
+
+                .heart-icon {
+                    &.liked {
+                        fill: $like-red;
+                    }
+                }
             }
 
             .action-btn:first-of-type {

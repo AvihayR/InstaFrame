@@ -12,6 +12,7 @@ import { PostActionsBar } from './PostActionsBar'
 import { LikesCounter } from './LikesCounter'
 import { useRef } from 'react'
 import { RootStoreState } from '@/store/store'
+import { AddComment } from './AddComment'
 const { timeAgo } = utilService
 
 interface PostDetailsProps {
@@ -106,6 +107,7 @@ export function PostDetails({ post }: PostDetailsProps) {
                         {post && utilService.getPostDate(post.postedAt)}
                     </span>
                 </div>
+                <AddComment></AddComment>
             </section>
         </div>
     )

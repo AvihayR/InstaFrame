@@ -83,6 +83,12 @@
                 }
             }
         }
+
+        .add-comment-container {
+            border-block-start: 1px solid $light-bg-1;
+            padding-inline: 1rem;
+            padding-block: rem(14px);
+        }
     }
 }
 
@@ -96,7 +102,8 @@
 
             }
 
-            .actions-container {
+            .actions-container,
+            .add-comment-container {
                 border-color: $dark-bg-1;
             }
         }

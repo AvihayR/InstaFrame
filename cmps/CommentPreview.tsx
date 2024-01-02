@@ -19,7 +19,6 @@ export function CommentPreview({ comment, onLikeComment, onUnLikeComment }: Comm
 
     useEffect(() => {
         if (comment !== undefined) setIsCommentLiked(comment.likedBy.includes(loggedUser?._id))
-        console.log('Render Comment')
     }, [])
 
     async function toggleLike() {
@@ -42,7 +41,7 @@ export function CommentPreview({ comment, onLikeComment, onUnLikeComment }: Comm
 
                     <div className="lower-comment flex items-center">
                         {comment?.postedAt && <span className='time-ago text-xs font-thin leading-4 text-gray-400'>{timeAgo(comment.postedAt)}</span>}
-                        {comment?.likedBy && comment.likedBy.length > 0 && <span className="liked-by text-xs font-medium text-gray-400 ms-2">
+                        {comment?.likedBy && comment.likedBy.length > 0 && <span className="liked-by text-xs font-medium text-gray-400 ms-3">
                             {`${comment.likedBy.length} like${comment.likedBy.length > 1 ? 's' : ''}`}
                         </span>}
                     </div>

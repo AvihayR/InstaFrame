@@ -55,28 +55,32 @@
             /* Firefox */
         }
 
-        .action-bar {
-            padding-inline: 1rem;
-            padding-block: rem(6px);
+        .actions-container {
+            border-block-start: 1px solid $light-bg-1;
+
+            .action-bar {
+                padding-inline: 1rem;
+                padding-block: rem(6px);
 
 
-            .action-btn {
-                margin: .5rem;
+                .action-btn {
+                    margin: .5rem;
 
-                .heart-icon {
-                    &.liked {
-                        fill: $like-red;
+                    .heart-icon {
+                        &.liked {
+                            fill: $like-red;
+                        }
                     }
                 }
-            }
 
-            .action-btn:first-of-type {
-                margin-inline-start: 0;
-            }
+                .action-btn:first-of-type {
+                    margin-inline-start: 0;
+                }
 
-            .action-btn:last-of-type {
-                margin-inline-start: auto;
-                margin-inline-end: 0;
+                .action-btn:last-of-type {
+                    margin-inline-start: auto;
+                    margin-inline-end: 0;
+                }
             }
         }
     }
@@ -90,6 +94,10 @@
             .post-owner {
                 border-color: $dark-bg-1;
 
+            }
+
+            .actions-container {
+                border-color: $dark-bg-1;
             }
         }
     }

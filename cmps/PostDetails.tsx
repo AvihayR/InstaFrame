@@ -101,7 +101,7 @@ export function PostDetails({ post }: PostDetailsProps) {
                 </div>
                 <div className="actions-container flex flex-col">
                     <PostActionsBar post={post as Post} onLikePost={onLikePost} onUnLikePost={onUnLikePost} />
-                    <LikesCounter />
+                    {post && <LikesCounter likes={post.likedBy} />}
                     <span className='posted-at mx-4 text-xs text-gray-400 mb-4'>
                         {post && utilService.formatDate(new Date(post.postedAt))}
                     </span>

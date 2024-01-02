@@ -22,7 +22,7 @@ export const userService = {
 _createUsers()
 
 function getUsers() {
-    return storageService.query('user')
+    return storageService.query<User[]>('user')
     // return httpService.get(`user`)
 }
 
@@ -31,7 +31,7 @@ function getUsers() {
 async function getById(userId: string) {
     const user = await storageService.get('user', userId)
     // const user = await httpService.get(`user/${userId}`)
-    return user
+    return user as User
 }
 
 function remove(userId: string) {

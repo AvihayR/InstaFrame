@@ -24,7 +24,6 @@ export default function ExplorePage() {
 
     useEffect(() => {
         onFetchPosts()
-        userService.getEmptyUser()
     }, [])
 
 

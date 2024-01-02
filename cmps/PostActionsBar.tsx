@@ -6,6 +6,7 @@ import { userService } from "@/services/user.service.local"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { RootStoreState } from "@/store/store"
+import { postService } from "@/services/post.service.local"
 
 interface PostActionsBarProps {
     post: Post
@@ -18,7 +19,7 @@ export function PostActionsBar({ post, onLikePost, onUnLikePost }: PostActionsBa
 
 
     useEffect(() => {
-        checkIsLiked()
+        setIsLiked(checkIsLiked(post))
     }, [post])
 
     const actions = [
@@ -27,9 +28,9 @@ export function PostActionsBar({ post, onLikePost, onUnLikePost }: PostActionsBa
         { name: 'save', icon: <SaveIcon />, func: () => { console.log('save') } }
     ]
 
-    async function checkIsLiked() {
-        let loggedUser = await userService.getLoggedinUser()
-        setIsLiked(new Set(post?.likedBy).has(loggedUser?._id))
+    function checkIsLiked(post: Post) {
+        let loggedUser = userService.getLoggedinUser()
+        return postService.isPostLiked(post, loggedUser._id)
     }
 
     function toggleLike() {

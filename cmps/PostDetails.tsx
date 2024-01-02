@@ -25,7 +25,7 @@ export function PostDetails({ post }: PostDetailsProps) {
         let loggedUser = await userService.getLoggedinUser()
 
         if (post && loggedUser) {
-            const updatedPost = await postService.likePost(post._id, loggedUser._id)
+            const updatedPost = await postService.likePost(post._id, loggedUser._id, loggedUser.username)
             //TODO: Add authentication validation before liking with logged user
 
             dispatch({ type: UPDATE_POST, post: updatedPost })

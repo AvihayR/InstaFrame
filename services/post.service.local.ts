@@ -1,7 +1,7 @@
 import { utilService } from "./util.service"
 import { Entity, storageService } from "./async-storage.service"
 import demoPosts from "./posts.demo"
-import { Post } from '../typings'
+import { Like, Post } from '../typings'
 // -----------------------------------------------------------
 const STORAGE_KEY = 'postsDB'
 // -----------------------------------------------------------
@@ -13,8 +13,10 @@ export const postService = {
     save,
     likePost,
     unLikePost,
+    isPostLiked,
     likeComment,
-    unLikeComment
+    unLikeComment,
+
 }
 
 _createPosts()
@@ -45,26 +47,35 @@ async function save(post: Post) {
     return savedPost
 }
 
-async function likePost(postId: string, userId: string) {
+async function likePost(postId: string, userId: string, username: string) {
+    const like = { userId, username }
     const post = await getPostById(postId)
-    const isLiked = new Set(post.likedBy).has(userId)
-
-    if (isLiked) return post
-    post.likedBy.unshift(userId)
+    if (isPostLiked(post, userId)) {
+        return post
+    }
+    post.likedBy.unshift(like)
     await save(post)
 
     return post
 }
 
+
 async function unLikePost(postId: string, userId: string) {
     const post = await getPostById(postId)
-    const isLiked = new Set(post.likedBy).has(userId)
 
-    if (!isLiked) return post
-    const newLikes = post.likedBy.filter(id => id !== userId)
+    if (!isPostLiked(post, userId)) {
+        return post
+    }
+    const newLikes = post.likedBy.filter(like => like.userId !== userId)
     const postToReturn = await save({ ...post, likedBy: newLikes })
 
     return postToReturn
+}
+
+
+function isPostLiked(post: Post, userId: string) {
+    // Convert likedBy array to Set for faster lookups
+    return new Set(post.likedBy.map((likeObj: Like) => likeObj.userId)).has(userId)
 }
 
 async function likeComment(postId: string, commentId: string, userId: string) {

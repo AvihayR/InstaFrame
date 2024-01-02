@@ -5,10 +5,16 @@ export interface Post {
     caption: string
     imgUrls: string[]
     vidUrls: string[]
-    likedBy: string[]
+    likedBy: Like[]
     comments: Comment[]
     postedAt: number
 }
+
+export interface Like {
+    userId: string
+    username: string
+}
+
 export interface Comment {
     id: string
     by: { userId: string, username: string, imgUrl: string }

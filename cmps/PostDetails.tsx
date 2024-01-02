@@ -103,7 +103,7 @@ export function PostDetails({ post }: PostDetailsProps) {
                     <PostActionsBar post={post as Post} onLikePost={onLikePost} onUnLikePost={onUnLikePost} />
                     {post && <LikesCounter likes={post.likedBy} />}
                     <span className='posted-at mx-4 text-xs text-gray-400 mb-4'>
-                        {post && utilService.formatDate(new Date(post.postedAt))}
+                        {post && utilService.getPostDate(post.postedAt)}
                     </span>
                 </div>
             </section>

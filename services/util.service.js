@@ -7,6 +7,7 @@ export const utilService = {
     debounce,
     timeAgo,
     formatDate,
+    getPostDate,
     loadFromStorage,
     saveToStorage
 }
@@ -80,17 +81,31 @@ function timeAgo(timestamp) {
     return "Just now"
 }
 
-function formatDate(date) {
+function formatDate(timestamp) {
+    const date = new Date(timestamp)
     const months = [
         'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
         'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
     ]
 
-    const month = months[date.getUTCMonth()];
-    const day = date.getUTCDate();
+    const month = months[date.getUTCMonth()]
+    const day = date.getUTCDate()
     const year = date.getUTCFullYear()
 
     return `${month} ${day}, ${year}`
+}
+
+function getPostDate(timestamp) {
+    //If less than a week return how many days, else return the date
+    const now = Date.now()
+    console.log(now, timestamp)
+    const isWeekPassed = (now - timestamp >= 604800)
+    if (isWeekPassed) {
+        return `${formatDate(timestamp)}`
+    } else {
+        return `${timeAgo(timestamp)} ago`
+    }
+
 }
 
 function loadFromStorage(key) {

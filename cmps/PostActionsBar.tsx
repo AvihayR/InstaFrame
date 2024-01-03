@@ -24,7 +24,7 @@ export function PostActionsBar({ post, onLikePost, onUnLikePost }: PostActionsBa
 
     const actions = [
         { name: 'like', icon: <HeartIcon isLiked={isLiked} />, func: toggleLike },
-        { name: 'comment', icon: <label className="cursor-pointer" htmlFor="add-comment"><CommentsIcon /></label>, func: () => { console.log('comment') } },
+        { name: 'comment', icon: <label className="cursor-pointer" htmlFor="add-comment"><CommentsIcon /></label> },
         { name: 'save', icon: <SaveIcon />, func: () => { console.log('save') } }
     ]
 

@@ -11,18 +11,16 @@ interface AddCommentProps {
 
 export function AddComment({ postId }: AddCommentProps) {
     // const [comment, setComment] = useState<Comment | null>(null)
+    const [isFormDisabled, setIsFormDisabled] = useState(true)
     const commentInitialState = { ...postService.getEmptyComment(), postId }
     const [comment, setComment] = useFormState(onPostComment, commentInitialState)
 
-    const [isFormDisabled, setIsFormDisabled] = useState(false)
-
-
     return (
         <section className="add-comment-container">
-            <form action={setComment} className="flex">
-                <button className="me-4" onClick={(ev) => { ev.preventDefault() }}>
+            <form action={setComment} onSubmit={(ev) => { console.log(ev.target) }} className="flex">
+                <div className="me-4" onClick={(ev) => { ev.preventDefault() }}>
                     <EmojiIcon />
-                </button>
+                </div>
 
                 <input
                     onInput={(ev: React.FormEvent<HTMLInputElement>) => {

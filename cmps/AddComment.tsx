@@ -17,12 +17,13 @@ export function AddComment({ postId }: AddCommentProps) {
 
     return (
         <section className="add-comment-container">
-            <form action={setComment} onSubmit={(ev) => { console.log(ev.target) }} className="flex">
+            <form action={setComment} className="flex">
                 <div className="me-4" onClick={(ev) => { ev.preventDefault() }}>
                     <EmojiIcon />
                 </div>
 
                 <input
+                    defaultValue={comment?.txt}
                     onInput={(ev: React.FormEvent<HTMLInputElement>) => {
                         setIsFormDisabled((ev.target as HTMLInputElement).value.length < 1)
                     }}

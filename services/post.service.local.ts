@@ -91,7 +91,7 @@ async function addComment(postId: string, comment: Comment) {
         post.comments.push(comment)
         await save(post)
 
-        return comment
+        return post
     }
 }
 

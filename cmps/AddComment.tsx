@@ -10,10 +10,18 @@ interface AddCommentProps {
 }
 
 export function AddComment({ postId }: AddCommentProps) {
-    // const [comment, setComment] = useState<Comment | null>(null)
+
+    const txtInput = useRef<HTMLInputElement | null>(null)
     const [isFormDisabled, setIsFormDisabled] = useState(true)
     const commentInitialState = { ...postService.getEmptyComment(), postId }
     const [comment, setComment] = useFormState(onPostComment, commentInitialState)
+
+    useEffect(() => {
+        //Clear form on submission
+        if (txtInput.current && comment) {
+            txtInput.current.value = comment.txt
+        }
+    }, [comment])
 
     return (
         <section className="add-comment-container">
@@ -23,6 +31,7 @@ export function AddComment({ postId }: AddCommentProps) {
                 </div>
 
                 <input
+                    ref={txtInput}
                     defaultValue={comment?.txt}
                     onInput={(ev: React.FormEvent<HTMLInputElement>) => {
                         setIsFormDisabled((ev.target as HTMLInputElement).value.length < 1)

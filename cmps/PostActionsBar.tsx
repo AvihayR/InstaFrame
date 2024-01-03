@@ -30,7 +30,7 @@ export function PostActionsBar({ post, onLikePost, onUnLikePost }: PostActionsBa
 
     function checkIsLiked(post: Post) {
         let loggedUser = userService.getLoggedinUser()
-        return postService.isPostLiked(post, loggedUser._id)
+        return postService.isPostLiked(post, loggedUser?._id)
     }
 
     function toggleLike() {

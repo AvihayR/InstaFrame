@@ -1,7 +1,8 @@
 import { utilService } from "./util.service"
 import { Entity, storageService } from "./async-storage.service"
 import demoPosts from "./posts.demo"
-import { Like, Post } from '../typings'
+import { Comment, Like, Post } from '../typings'
+import { userService } from "./user.service.local"
 // -----------------------------------------------------------
 const STORAGE_KEY = 'postsDB'
 // -----------------------------------------------------------
@@ -14,6 +15,7 @@ export const postService = {
     likePost,
     unLikePost,
     isPostLiked,
+    getEmptyComment,
     likeComment,
     unLikeComment,
 
@@ -76,6 +78,25 @@ async function unLikePost(postId: string, userId: string) {
 function isPostLiked(post: Post, userId: string) {
     // Convert likedBy array to Set for faster lookups
     return new Set(post.likedBy.map((likeObj: Like) => likeObj.userId)).has(userId)
+}
+
+async function addComment() {
+
+}
+
+function getEmptyComment() {
+    const loggedUser = userService.getLoggedinUser()
+    //TODO: Add auth to identify user credentials
+
+    if (loggedUser)
+        return {
+            id: utilService.makeId(),
+            by: { userId: loggedUser._id, username: loggedUser.username, imgUrl: loggedUser.imgUrl },
+            txt: '',
+            likedBy: [],
+            postedAt: Date.now()
+        }
+    else return null
 }
 
 async function likeComment(postId: string, commentId: string, userId: string) {

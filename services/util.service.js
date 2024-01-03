@@ -99,7 +99,6 @@ function getPostDate(timestamp) {
     //If less than a week return how many days, else return the date
     const now = Date.now()
     const isWeekPassed = (now - timestamp >= 604800000)
-    console.log(now - timestamp)
     if (isWeekPassed) {
         return `${formatDate(timestamp)}`
     } else {

@@ -107,7 +107,7 @@ export function PostDetails({ post }: PostDetailsProps) {
                         {post && utilService.getPostDate(post.postedAt)}
                     </span>
                 </div>
-                <AddComment></AddComment>
+                {post && <AddComment postId={post?._id} />}
             </section>
         </div>
     )

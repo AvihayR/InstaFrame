@@ -18,7 +18,7 @@ export const postService = {
     getEmptyComment,
     likeComment,
     unLikeComment,
-
+    addComment
 }
 
 _createPosts()
@@ -80,23 +80,32 @@ function isPostLiked(post: Post, userId: string) {
     return new Set(post.likedBy.map((likeObj: Like) => likeObj.userId)).has(userId)
 }
 
-async function addComment() {
 
+async function addComment(postId: string, comment: Comment) {
+    if (!comment.by.userId) {
+        //TODO: Add auth check
+        throw new Error('Please login to continue')
+    }
+    else {
+        const post = await getPostById(postId)
+        post.comments.push(comment)
+        await save(post)
+
+        return comment
+    }
 }
 
 function getEmptyComment() {
     const loggedUser = userService.getLoggedinUser()
     //TODO: Add auth to identify user credentials
 
-    if (loggedUser)
-        return {
-            id: utilService.makeId(),
-            by: { userId: loggedUser._id, username: loggedUser.username, imgUrl: loggedUser.imgUrl },
-            txt: '',
-            likedBy: [],
-            postedAt: Date.now()
-        }
-    else return null
+    return {
+        id: utilService.makeId(),
+        by: { userId: loggedUser?._id, username: loggedUser?.username, imgUrl: loggedUser?.imgUrl },
+        txt: '',
+        likedBy: [],
+        postedAt: Date.now()
+    }
 }
 
 async function likeComment(postId: string, commentId: string, userId: string) {

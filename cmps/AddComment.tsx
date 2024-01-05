@@ -34,6 +34,8 @@ export function AddComment({ postId, isPopoverOpen, setIsPopoverOpen }: AddComme
         if (txtInput.current) {
             const target = ev.target as HTMLElement
             txtInput.current.value += target.innerText
+
+            setIsFormDisabled((ev.target as HTMLInputElement).innerText.length < 1)
         }
     }
 

@@ -1,6 +1,6 @@
 import { postService } from "@/services/post.service.local"
 import EmojiIcon from "./icons/EmojiIcon"
-import { useEffect, useRef, useState } from "react"
+import { MouseEvent, useEffect, useRef, useState } from "react"
 import { Comment } from "@/typings"
 import { commentState, onPostComment } from "@/actions/server-actions"
 import { useFormState } from "react-dom"
@@ -13,12 +13,12 @@ interface AddCommentProps {
 
 export function AddComment({ postId }: AddCommentProps) {
 
-    const txtInput = useRef<HTMLInputElement | null>(null)
     const [isFormDisabled, setIsFormDisabled] = useState(true)
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+    const txtInput = useRef<HTMLInputElement | null>(null)
 
     const commentInitialState = { ...postService.getEmptyComment(), postId }
-    const [comment, setComment] = useFormState(onPostComment, commentInitialState)
+    const [comment, sendComment] = useFormState(onPostComment, commentInitialState)
 
 
     useEffect(() => {
@@ -28,13 +28,20 @@ export function AddComment({ postId }: AddCommentProps) {
         }
     }, [comment])
 
+    function onEmojiClick(ev: MouseEvent<HTMLElement>) {
+        if (txtInput.current) {
+            const target = ev.target as HTMLElement
+            txtInput.current.value += target.innerText
+        }
+    }
+
     return (
         <section className="add-comment-container">
-            <form action={setComment} className="flex">
+            <form action={sendComment} className="flex">
                 <div className="emoji-btn cursor-pointer me-4 relative" onClick={(ev) => { setIsPopoverOpen(currState => !currState) }}>
                     <EmojiIcon />
                     <Popover isOpen={isPopoverOpen}>
-                        <EmojiList />
+                        <EmojiList onEmojiClick={onEmojiClick} />
                     </Popover>
                 </div>
 

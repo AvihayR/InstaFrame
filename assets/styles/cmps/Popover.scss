@@ -1,0 +1,18 @@
+.popover-content {
+    cursor: default;
+
+    .emoji-list {
+        .emoji {
+            width: rem(34px);
+            text-align: center;
+            font-size: rem(32px);
+            line-height: 1;
+        }
+
+        .popular-list {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: rem(6px);
+        }
+    }
+}

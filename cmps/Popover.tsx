@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useRef } from "react"
-
+import { createPortal } from "react-dom"
 
 interface PopoverProps {
     isOpen: boolean
@@ -13,7 +13,7 @@ export function Popover({ isOpen, children }: PopoverProps) {
 
     return (
         isOpen &&
-        <div onClick={handleContentClick} className='popover-content absolute bottom-6 px-4 py-3 shadow-md rounded-xl bg-light dark:bg-dark'>
+        <div onClick={handleContentClick} className='popover-content absolute bottom-6 left-0 px-4 py-3 shadow-md rounded-xl bg-light dark:bg-dark'>
             {children}
         </div>
     )

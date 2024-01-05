@@ -1,6 +1,6 @@
 import { postService } from "@/services/post.service.local"
 import EmojiIcon from "./icons/EmojiIcon"
-import { MouseEvent, useEffect, useRef, useState } from "react"
+import { Dispatch, MouseEvent, SetStateAction, useEffect, useRef, useState } from "react"
 import { Comment } from "@/typings"
 import { commentState, onPostComment } from "@/actions/server-actions"
 import { useFormState } from "react-dom"
@@ -9,12 +9,13 @@ import { EmojiList } from "./EmojiList"
 
 interface AddCommentProps {
     postId: string
+    isPopoverOpen: boolean
+    setIsPopoverOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export function AddComment({ postId }: AddCommentProps) {
+export function AddComment({ postId, isPopoverOpen, setIsPopoverOpen }: AddCommentProps) {
 
     const [isFormDisabled, setIsFormDisabled] = useState(true)
-    const [isPopoverOpen, setIsPopoverOpen] = useState(false)
     const txtInput = useRef<HTMLInputElement | null>(null)
 
     const commentInitialState = { ...postService.getEmptyComment(), postId }
@@ -28,6 +29,7 @@ export function AddComment({ postId }: AddCommentProps) {
         }
     }, [comment])
 
+
     function onEmojiClick(ev: MouseEvent<HTMLElement>) {
         if (txtInput.current) {
             const target = ev.target as HTMLElement
@@ -38,7 +40,13 @@ export function AddComment({ postId }: AddCommentProps) {
     return (
         <section className="add-comment-container">
             <form action={sendComment} className="flex">
-                <div className="emoji-btn cursor-pointer me-4 relative" onClick={(ev) => { setIsPopoverOpen(currState => !currState) }}>
+                <div
+                    className="emoji-btn cursor-pointer me-4 relative"
+                    onClick={(ev) => {
+                        setIsPopoverOpen((isOpen) => !isOpen)
+                        ev.stopPropagation()
+                    }}
+                >
                     <EmojiIcon />
                     <Popover isOpen={isPopoverOpen}>
                         <EmojiList onEmojiClick={onEmojiClick} />

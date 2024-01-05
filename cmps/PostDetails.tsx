@@ -10,7 +10,7 @@ import { SET_CHOSEN_POST, UPDATE_POST } from '@/store/reducers/posts.reducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { PostActionsBar } from './PostActionsBar'
 import { LikesCounter } from './LikesCounter'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { RootStoreState } from '@/store/store'
 import { AddComment } from './AddComment'
 const { timeAgo } = utilService
@@ -22,7 +22,7 @@ interface PostDetailsProps {
 
 export function PostDetails({ post }: PostDetailsProps) {
     const dispatch = useDispatch()
-
+    const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false)
 
     async function onLikePost(isLiked = false) {
         //TODO: Add authentication validation before liking with logged user
@@ -66,7 +66,7 @@ export function PostDetails({ post }: PostDetailsProps) {
     }
 
     return (
-        <div className="post-details flex justify-center">
+        <div onClick={() => setIsPopoverOpen(false)} className="post-details flex justify-center">
 
             {post?.imgUrls[0] && (
                 <div className="img-container">
@@ -100,7 +100,7 @@ export function PostDetails({ post }: PostDetailsProps) {
                         {post && utilService.getPostDate(post.postedAt)}
                     </span>
                 </div>
-                {post && <AddComment postId={post?._id} />}
+                {post && <AddComment postId={post?._id} isPopoverOpen={isPopoverOpen} setIsPopoverOpen={setIsPopoverOpen} />}
             </section>
         </div>
     )

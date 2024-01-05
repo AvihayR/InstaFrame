@@ -24,6 +24,7 @@ export default function RootLayout({
           <main className="main-page flex flex-col items-center justify-between py-6">
             {children}
           </main>
+          <div id="portal"></div>
         </body>
       </html>
     </Providers>

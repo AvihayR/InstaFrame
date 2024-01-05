@@ -11,12 +11,13 @@ export const userService = {
     logout,
     signup,
     getLoggedinUser,
-    saveLocalUser,
+    setUserToken,
     getUsers,
     getById,
     remove,
     update,
-    getEmptyUser
+    getEmptyUser,
+    savePostToList
 }
 
 _createUsers()
@@ -25,8 +26,6 @@ function getUsers() {
     return storageService.query<User[]>('user')
     // return httpService.get(`user`)
 }
-
-
 
 async function getById(userId: string) {
     const user = await storageService.get('user', userId)
@@ -39,10 +38,10 @@ function remove(userId: string) {
     // return httpService.delete(`user/${userId}`)
 }
 
-async function update({ _id, newUser }: { _id: string, newUser: User }) {
-    const user = await storageService.get('user', _id)
-    await storageService.put('user', user)
-    return user
+async function update(newUser: User) {
+    const user = await storageService.get('user', newUser._id)
+    return await storageService.put('user', { ...user, ...newUser })
+    // return user
 }
 
 async function login(userCred: { username: string, password: string }) {
@@ -51,7 +50,7 @@ async function login(userCred: { username: string, password: string }) {
     // const user = await httpService.post('auth/login', userCred)
     if (user) {
         console.log(userCred.username, 'Logged in')
-        return saveLocalUser(user)
+        return setUserToken(user)
     }
 }
 
@@ -61,7 +60,7 @@ async function signup(userCred: User) {
     const user = await storageService.post('user', userCred)
     return await login({ username, password })
     // const user = await httpService.post('auth/signup', userCred)
-    // return saveLocalUser(user as User)
+    // return setUserToken(user as User)
 }
 
 async function logout() {
@@ -69,7 +68,7 @@ async function logout() {
     // return await httpService.post('auth/logout')
 }
 
-function saveLocalUser(user: User) {
+function setUserToken(user: User) {
     let miniUser = { _id: user._id, username: user.username, imgUrl: user.imgUrl }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(miniUser))
     return user
@@ -94,6 +93,7 @@ function getEmptyUser() {
         imgUrl: '',
         bio: '',
         posts: [],
+        savedPosts: [],
         followers: [],
         following: [],
     }
@@ -107,6 +107,11 @@ function _createUsers() {
     }
 }
 
+async function savePostToList(userId: string, postId: string) {
+    const user = await getById(userId)
+    user.savedPosts.unshift(postId)
+    return update(user)
+}
 
 // ;(async ()=>{
 //     await userService.signup({fullname: 'Puki Norma', username: 'puki', password:'123',score: 10000, isAdmin: false})

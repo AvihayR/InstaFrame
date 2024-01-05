@@ -31,6 +31,7 @@ export interface User {
     imgUrl: string,
     bio: string,
     posts: Post[],
+    savedPosts: string[],
     followers: Followers[],
     following: Followers[],
 }

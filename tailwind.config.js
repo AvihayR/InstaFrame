@@ -11,6 +11,8 @@ module.exports = {
     extend: {
       colors: {
         'link-blue': '#0095F6',
+        'dark': '#151515',
+        'light': '#f7f7f7',
       },
     },
     screens: {

@@ -5,6 +5,7 @@ import { Comment } from "@/typings"
 import { commentState, onPostComment } from "@/actions/server-actions"
 import { useFormState } from "react-dom"
 import { Popover } from "./Popover"
+import { EmojiList } from "./EmojiList"
 
 interface AddCommentProps {
     postId: string
@@ -30,9 +31,11 @@ export function AddComment({ postId }: AddCommentProps) {
     return (
         <section className="add-comment-container">
             <form action={setComment} className="flex">
-                <div className="me-4 relative" onClick={(ev) => { ev.preventDefault() }}>
+                <div className="emoji-btn cursor-pointer me-4 relative" onClick={(ev) => { setIsPopoverOpen(currState => !currState) }}>
                     <EmojiIcon />
-                    <Popover isOpen={isPopoverOpen} />
+                    <Popover isOpen={isPopoverOpen}>
+                        <EmojiList />
+                    </Popover>
                 </div>
 
                 <input

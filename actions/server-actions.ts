@@ -28,7 +28,6 @@ export async function onPostComment(prevState?: commentState, formData?: FormDat
 
     try {
         const updatedPost = await postService.addComment(postId, comment as Comment)
-        console.log({ ...updatedPost, postId })
         store.dispatch({ type: UPDATE_POST, post: updatedPost })
         store.dispatch({ type: SET_CHOSEN_POST, post: updatedPost })
 

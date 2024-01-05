@@ -19,7 +19,7 @@ export default function RootLayout({
     <Providers>
       <html lang="en">
         <head>
-          <link rel="icon" href="./favicon.ico" sizes="any" />
+          <link rel="icon" href="/insta-ico.png" sizes="any" />
         </head>
         <body className='block md:flex flex-row'>
           <Header />

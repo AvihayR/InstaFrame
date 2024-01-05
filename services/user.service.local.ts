@@ -17,7 +17,9 @@ export const userService = {
     remove,
     update,
     getEmptyUser,
-    savePostToList
+    savePostToList,
+    removePostFromList,
+    isPostSaved
 }
 
 _createUsers()
@@ -111,6 +113,17 @@ async function savePostToList(userId: string, postId: string) {
     const user = await getById(userId)
     user.savedPosts.unshift(postId)
     return update(user)
+}
+
+async function removePostFromList(userId: string, postId: string) {
+    const user = await getById(userId)
+    user.savedPosts = user.savedPosts.filter(id => id !== postId)
+    return update(user)
+}
+
+async function isPostSaved(userId: string, postId: string) {
+    const user = await getById(userId)
+    return user.savedPosts.includes(postId)
 }
 
 // ;(async ()=>{

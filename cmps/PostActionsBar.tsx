@@ -4,33 +4,41 @@ import HeartIcon from "./icons/HeartIcon"
 import SaveIcon from "./icons/SaveIcon"
 import { userService } from "@/services/user.service.local"
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-import { RootStoreState } from "@/store/store"
 import { postService } from "@/services/post.service.local"
 
 interface PostActionsBarProps {
     post: Post
     onLikePost: () => void
     onUnLikePost: () => void
+    onSavePost: (isSaved?: boolean) => void
 }
 
-export function PostActionsBar({ post, onLikePost, onUnLikePost }: PostActionsBarProps) {
+export function PostActionsBar({ post, onLikePost, onUnLikePost, onSavePost }: PostActionsBarProps) {
     const [isLiked, setIsLiked] = useState<boolean>(false)
+    const [isSaved, setIsSaved] = useState<boolean>(false)
 
 
     useEffect(() => {
-        setIsLiked(checkIsLiked(post))
+        checkIsLiked(post)
+        checkIsSaved(post)
     }, [post])
 
     const actions = [
         { name: 'like', icon: <HeartIcon isLiked={isLiked} />, func: toggleLike },
         { name: 'comment', icon: <label className="cursor-pointer" htmlFor="add-comment"><CommentsIcon /></label> },
-        { name: 'save', icon: <SaveIcon />, func: () => { console.log('save') } }
+        { name: 'save', icon: <SaveIcon isFilled={isSaved} />, func: toggleSave }
     ]
 
     function checkIsLiked(post: Post) {
         let loggedUser = userService.getLoggedinUser()
-        return postService.isPostLiked(post, loggedUser?._id)
+        const isLiked = postService.isPostLiked(post, loggedUser?._id)
+        setIsLiked(isLiked)
+    }
+
+    async function checkIsSaved(post: Post) {
+        let loggedUser = userService.getLoggedinUser()
+        const isSaved = await userService.isPostSaved(loggedUser._id, post._id)
+        setIsSaved(isSaved)
     }
 
     function toggleLike() {
@@ -41,6 +49,17 @@ export function PostActionsBar({ post, onLikePost, onUnLikePost }: PostActionsBa
         else {
             setIsLiked(true)
             onLikePost()
+        }
+    }
+
+    function toggleSave() {
+        if (isSaved) {
+            setIsSaved(false)
+            onSavePost(true)
+        } else {
+            setIsSaved(true)
+            onSavePost()
+            console.log('save post')
         }
     }
 

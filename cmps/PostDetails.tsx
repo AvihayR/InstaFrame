@@ -48,6 +48,17 @@ export function PostDetails({ post }: PostDetailsProps) {
         else console.log('Log in to like a comment')
     }
 
+    async function onSavePost(isSaved = false) {
+        let loggedUser = await userService.getLoggedinUser()
+
+        if (post && loggedUser) {
+            //TODO: Add authentication validation before saved with logged user
+            if (!isSaved) return await userService.savePostToList(loggedUser._id, post._id)
+            else await userService.removePostFromList(loggedUser._id, post._id)
+        }
+        else console.log('Log in to save a post')
+    }
+
     async function onLikeComment(commentId: string) {
         let loggedUser = await userService.getLoggedinUser()
         //TODO: Add authentication validation before liking with logged user
@@ -101,7 +112,7 @@ export function PostDetails({ post }: PostDetailsProps) {
                     <CommentList comments={post?.comments} onLikeComment={onLikeComment} onUnLikeComment={onUnLikeComment} />
                 </div>
                 <div className="actions-container flex flex-col">
-                    <PostActionsBar post={post as Post} onLikePost={onLikePost} onUnLikePost={onUnLikePost} />
+                    <PostActionsBar post={post as Post} onLikePost={onLikePost} onUnLikePost={onUnLikePost} onSavePost={onSavePost} />
                     {post && <LikesCounter likes={post.likedBy} />}
                     <span className='posted-at mx-4 text-xs text-gray-400 mb-4'>
                         {post && utilService.getPostDate(post.postedAt)}

@@ -8,12 +8,11 @@ import { postService } from "@/services/post.service.local"
 
 interface PostActionsBarProps {
     post: Post
-    onLikePost: () => void
-    onUnLikePost: () => void
+    onLikePost: (isLiked?: boolean) => void
     onSavePost: (isSaved?: boolean) => void
 }
 
-export function PostActionsBar({ post, onLikePost, onUnLikePost, onSavePost }: PostActionsBarProps) {
+export function PostActionsBar({ post, onLikePost, onSavePost }: PostActionsBarProps) {
     const [isLiked, setIsLiked] = useState<boolean>(false)
     const [isSaved, setIsSaved] = useState<boolean>(false)
 
@@ -44,7 +43,7 @@ export function PostActionsBar({ post, onLikePost, onUnLikePost, onSavePost }: P
     function toggleLike() {
         if (isLiked) {
             setIsLiked(false)
-            onUnLikePost()
+            onLikePost(true)
         }
         else {
             setIsLiked(true)

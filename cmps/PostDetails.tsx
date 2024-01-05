@@ -15,6 +15,7 @@ import { RootStoreState } from '@/store/store'
 import { AddComment } from './AddComment'
 const { timeAgo } = utilService
 
+export type LikeCommentFunc = (commentId: string, isLiked?: boolean) => Promise<void>
 interface PostDetailsProps {
     post: Post | null
 }
@@ -22,25 +23,15 @@ interface PostDetailsProps {
 export function PostDetails({ post }: PostDetailsProps) {
     const dispatch = useDispatch()
 
-    async function onLikePost() {
+
+    async function onLikePost(isLiked = false) {
+        //TODO: Add authentication validation before liking with logged user
         let loggedUser = await userService.getLoggedinUser()
+        let updatedPost
 
         if (post && loggedUser) {
-            const updatedPost = await postService.likePost(post._id, loggedUser._id, loggedUser.username)
-            //TODO: Add authentication validation before liking with logged user
-
-            dispatch({ type: UPDATE_POST, post: updatedPost })
-            dispatch({ type: SET_CHOSEN_POST, post: updatedPost })
-        }
-        else console.log('Log in to like a comment')
-    }
-
-    async function onUnLikePost() {
-        let loggedUser = await userService.getLoggedinUser()
-
-        if (post && loggedUser) {
-            const updatedPost = await postService.unLikePost(post._id, loggedUser._id)
-            //TODO: Add authentication validation before liking with logged user
+            if (!isLiked) updatedPost = await postService.likePost(post._id, loggedUser._id, loggedUser.username)
+            else updatedPost = await postService.unLikePost(post._id, loggedUser._id)
 
             dispatch({ type: UPDATE_POST, post: updatedPost })
             dispatch({ type: SET_CHOSEN_POST, post: updatedPost })
@@ -59,28 +50,19 @@ export function PostDetails({ post }: PostDetailsProps) {
         else console.log('Log in to save a post')
     }
 
-    async function onLikeComment(commentId: string) {
-        let loggedUser = await userService.getLoggedinUser()
+    async function onLikeComment(commentId: string, isLiked = false) {
         //TODO: Add authentication validation before liking with logged user
+        let loggedUser = await userService.getLoggedinUser()
+        let updatedPost
 
         if (post && loggedUser) {
-            const updatedPost = await postService.likeComment(post._id, commentId, loggedUser._id)
+            if (!isLiked) updatedPost = await postService.likeComment(post._id, commentId, loggedUser._id)
+            else updatedPost = await postService.unLikeComment(post._id, commentId, loggedUser._id)
+
             dispatch({ type: UPDATE_POST, post: updatedPost })
             dispatch({ type: SET_CHOSEN_POST, post: updatedPost })
         }
         else console.log('Log in to like a comment')
-    }
-
-    async function onUnLikeComment(commentId: string) {
-        let loggedUser = await userService.getLoggedinUser()
-        //TODO: Add authentication validation before liking with logged user
-
-        if (post && loggedUser) {
-            const updatedPost = await postService.unLikeComment(post._id, commentId, loggedUser._id)
-            dispatch({ type: UPDATE_POST, post: updatedPost })
-            dispatch({ type: SET_CHOSEN_POST, post: updatedPost })
-        }
-        else console.log('Log in to unlike a comment')
     }
 
     return (
@@ -109,10 +91,10 @@ export function PostDetails({ post }: PostDetailsProps) {
                             {post?.postedAt && <span className='time-ago mt-1 text-xs font-thin leading-none text-gray-400'>{timeAgo(post.postedAt)}</span>}
                         </div>
                     </article>
-                    <CommentList comments={post?.comments} onLikeComment={onLikeComment} onUnLikeComment={onUnLikeComment} />
+                    <CommentList comments={post?.comments} onLikeComment={onLikeComment} />
                 </div>
                 <div className="actions-container flex flex-col">
-                    <PostActionsBar post={post as Post} onLikePost={onLikePost} onUnLikePost={onUnLikePost} onSavePost={onSavePost} />
+                    <PostActionsBar post={post as Post} onLikePost={onLikePost} onSavePost={onSavePost} />
                     {post && <LikesCounter likes={post.likedBy} />}
                     <span className='posted-at mx-4 text-xs text-gray-400 mb-4'>
                         {post && utilService.getPostDate(post.postedAt)}

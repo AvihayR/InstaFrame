@@ -6,14 +6,14 @@ import { Comment } from '../typings'
 import HeartIcon from "./icons/HeartIcon"
 import { userService } from "@/services/user.service.local"
 import { useEffect, useState } from "react"
+import { LikeCommentFunc } from "./PostDetails"
 
 interface CommentProps {
     comment: Comment | undefined
-    onLikeComment: (commentId: string) => Promise<void>
-    onUnLikeComment: (commentId: string) => Promise<void>
+    onLikeComment: LikeCommentFunc
 }
 
-export function CommentPreview({ comment, onLikeComment, onUnLikeComment }: CommentProps) {
+export function CommentPreview({ comment, onLikeComment }: CommentProps) {
     const loggedUser = userService.getLoggedinUser()
     const [isCommentLiked, setIsCommentLiked] = useState<boolean>(false)
 
@@ -22,7 +22,8 @@ export function CommentPreview({ comment, onLikeComment, onUnLikeComment }: Comm
     }, [])
 
     async function toggleLike() {
-        isCommentLiked ? onUnLikeComment(comment?.id as string) : onLikeComment(comment?.id as string)
+        if (comment)
+            isCommentLiked ? onLikeComment(comment.id, true) : onLikeComment(comment.id)
         setIsCommentLiked(prevState => !prevState)
     }
 

@@ -1,8 +1,6 @@
 import '../assets/styles/main.scss'
 import type { Metadata } from 'next'
 import { Header } from '@/cmps/Header'
-import { Provider } from 'react-redux'
-import { store } from '../store/store'
 import { Providers } from '@/Providers'
 
 export const metadata: Metadata = {

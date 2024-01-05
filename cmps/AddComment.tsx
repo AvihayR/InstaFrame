@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { Comment } from "@/typings"
 import { commentState, onPostComment } from "@/actions/server-actions"
 import { useFormState } from "react-dom"
+import { Popover } from "./Popover"
 
 interface AddCommentProps {
     postId: string
@@ -13,8 +14,11 @@ export function AddComment({ postId }: AddCommentProps) {
 
     const txtInput = useRef<HTMLInputElement | null>(null)
     const [isFormDisabled, setIsFormDisabled] = useState(true)
+    const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+
     const commentInitialState = { ...postService.getEmptyComment(), postId }
     const [comment, setComment] = useFormState(onPostComment, commentInitialState)
+
 
     useEffect(() => {
         //Clear form on submission
@@ -26,8 +30,9 @@ export function AddComment({ postId }: AddCommentProps) {
     return (
         <section className="add-comment-container">
             <form action={setComment} className="flex">
-                <div className="me-4" onClick={(ev) => { ev.preventDefault() }}>
+                <div className="me-4 relative" onClick={(ev) => { ev.preventDefault() }}>
                     <EmojiIcon />
+                    <Popover isOpen={isPopoverOpen} />
                 </div>
 
                 <input

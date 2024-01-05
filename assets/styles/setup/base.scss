@@ -2,7 +2,11 @@ body {
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: $light-bg;
-    color: $dark-bg
+    color: $dark-bg;
+
+    input {
+        background-color: transparent;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,6 +17,5 @@ body {
 
     input {
         color-scheme: dark;
-        background-color: transparent;
     }
 }

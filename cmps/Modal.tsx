@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { ReactNode, useEffect } from "react"
 import CloseIcon from "./icons/CloseIcon"
 
 interface ModalProps {
@@ -9,6 +9,21 @@ interface ModalProps {
 
 
 export function Modal({ isOpen, onClose, children }: ModalProps) {
+
+    useEffect(() => {
+        window.addEventListener('keydown', escKeyPress)
+
+        return () => {
+            window.removeEventListener('keydown', escKeyPress)
+        }
+    }, [])
+
+    function escKeyPress(ev: KeyboardEvent) {
+        if (ev.key === "Escape") {
+            onClose()
+        }
+    }
+
     function handleContentClick(event: React.MouseEvent<HTMLElement>) {
         event.stopPropagation()
     }

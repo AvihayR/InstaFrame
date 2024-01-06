@@ -1,9 +1,7 @@
 import { storageService } from './async-storage.service'
 import demoUsers from './users.demo'
 import { utilService } from './util.service'
-
 import { User } from '../typings'
-
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedInUser'
 
 export const userService = {
@@ -19,7 +17,8 @@ export const userService = {
     getEmptyUser,
     savePostToList,
     removePostFromList,
-    isPostSaved
+    isPostSaved,
+    followUser
 }
 
 _createUsers()
@@ -31,6 +30,7 @@ function getUsers() {
 
 async function getById(userId: string) {
     const user = await storageService.get('user', userId)
+    delete user.password
     // const user = await httpService.get(`user/${userId}`)
     return user as User
 }
@@ -124,6 +124,24 @@ async function removePostFromList(userId: string, postId: string) {
 async function isPostSaved(userId: string, postId: string) {
     const user = await getById(userId)
     return user.savedPosts.includes(postId)
+}
+
+
+function _buildFollower(user: User) {
+    const { _id, username, fullname, imgUrl } = user
+    return { _id, username, fullname, imgUrl }
+}
+
+
+async function followUser(userToFollowId: string, loggedUserId: string) {
+    let loggedUser = await getById(loggedUserId)
+    let userToFollow = await getById(userToFollowId)
+
+    loggedUser.following.unshift(_buildFollower(userToFollow))
+    userToFollow.followers.unshift(_buildFollower(loggedUser))
+
+    await update(loggedUser)
+    await update(userToFollow)
 }
 
 // ;(async ()=>{

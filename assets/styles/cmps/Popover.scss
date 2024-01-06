@@ -3,16 +3,17 @@
 
     .emoji-list {
         .emoji {
-            width: rem(34px);
+            max-width: rem(42px);
             text-align: center;
             font-size: rem(32px);
-            line-height: 1;
+            line-height: rem(42px);
         }
 
         .popular-list {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: rem(6px);
+            column-gap: rem(1px);
+            row-gap: rem(6px);
         }
     }
 }

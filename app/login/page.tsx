@@ -33,8 +33,12 @@ export default function LoginPage() {
         formData.forEach((value, key) => {
             if (key === 'username' || key === 'password') userCreds[key as keyof UserCreds] = value as string
         })
-        const user = await userService.login(userCreds)
-        setLoggedUser(userService.getLoggedinUser())
+        try {
+            const user = await userService.login(userCreds)
+            setLoggedUser(userService.getLoggedinUser())
+        } catch (err) {
+            console.log(err)
+        }
     }
 
 

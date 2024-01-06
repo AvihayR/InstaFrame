@@ -1,7 +1,7 @@
 import { storageService } from './async-storage.service'
 import demoUsers from './users.demo'
 import { utilService } from './util.service'
-import { User } from '../typings'
+import { Followers, User } from '../typings'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedInUser'
 
 export const userService = {
@@ -18,7 +18,8 @@ export const userService = {
     savePostToList,
     removePostFromList,
     isPostSaved,
-    followUser
+    toggleFollowUser,
+    isUserFollowed
 }
 
 _createUsers()
@@ -53,7 +54,7 @@ async function login(userCred: { username: string, password: string }) {
     if (user) {
         console.log(userCred.username, 'Logged in')
         return setUserToken(user)
-    }
+    } else throw new Error('Incorrect user credentials')
 }
 
 async function signup(userCred: User) {
@@ -132,17 +133,38 @@ function _buildFollower(user: User) {
     return { _id, username, fullname, imgUrl }
 }
 
+async function isUserFollowed(userIdToCheck: string) {
+    let loggedUserToken = getLoggedinUser()
+    if (!loggedUserToken) return false
 
-async function followUser(userToFollowId: string, loggedUserId: string) {
+    const loggedUser = await getById(loggedUserToken._id)
+
+    // Convert followers array to Set for faster lookups
+    return new Set(loggedUser.following.map((followedUser: Followers) => followedUser._id)).has(userIdToCheck)
+}
+
+async function toggleFollowUser(userToFollowId: string, loggedUserId: string, unFollowMode = false) {
+    console.log('unfollow?', unFollowMode)
     let loggedUser = await getById(loggedUserId)
     let userToFollow = await getById(userToFollowId)
+    if (userToFollow._id === loggedUser._id) return
 
-    loggedUser.following.unshift(_buildFollower(userToFollow))
-    userToFollow.followers.unshift(_buildFollower(loggedUser))
+
+    if (!unFollowMode) {
+        if (!await isUserFollowed(userToFollowId)) {
+            loggedUser.following.unshift(_buildFollower(userToFollow))
+            userToFollow.followers.unshift(_buildFollower(loggedUser))
+        }
+
+    } else {
+        loggedUser = { ...loggedUser, following: loggedUser.following.filter(user => user._id !== userToFollow._id) }
+        userToFollow = { ...userToFollow, followers: userToFollow.followers.filter(user => user._id !== loggedUser._id) }
+    }
 
     await update(loggedUser)
     await update(userToFollow)
 }
+
 
 // ;(async ()=>{
 //     await userService.signup({fullname: 'Puki Norma', username: 'puki', password:'123',score: 10000, isAdmin: false})

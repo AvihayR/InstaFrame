@@ -1,11 +1,8 @@
 import { createStore, combineReducers, applyMiddleware, compose, Reducer, Action } from 'redux'
 import { systemReducer } from './reducers/system.reducer'
 import { postReducer } from './reducers/posts.reducer'
-import { PostState, RootState, SystemState } from '../typings'
-// import { userReducer } from './user.reducer.js'
-// import { reviewReducer } from './review.reducer'
-// import { systemReducer } from './system.reducer'
-// import { orderReducer } from './reducers/order.reducer.js'
+import { userReducer } from './reducers/user.reducer'
+import { PostState, RootState, SystemState, UserState } from '../typings'
 
 declare global {
     interface Window {
@@ -16,7 +13,7 @@ declare global {
 const rootReducer: Reducer<RootState, Action<string>> = combineReducers({
     systemModule: systemReducer as Reducer<SystemState, Action<string>>,
     postModule: postReducer as Reducer<PostState, Action<string>>,
-    // userModule: userReducer,
+    userModule: userReducer as Reducer<UserState, Action<string>>,
 })
 
 let middleware = applyMiddleware(/* Add your middleware here if needed */)

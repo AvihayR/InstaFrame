@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Post } from '../typings'
+import { Post, UserToken } from '../typings'
 import { PostHeading } from './PostHeading'
 import { utilService } from '@/services/util.service'
 import { TxtBreaks } from './TxtBreaks'
@@ -10,7 +10,7 @@ import { SET_CHOSEN_POST, UPDATE_POST } from '@/store/reducers/posts.reducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { PostActionsBar } from './PostActionsBar'
 import { LikesCounter } from './LikesCounter'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { RootStoreState } from '@/store/store'
 import { AddComment } from './AddComment'
 const { timeAgo } = utilService
@@ -23,10 +23,10 @@ interface PostDetailsProps {
 export function PostDetails({ post }: PostDetailsProps) {
     const dispatch = useDispatch()
     const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false)
+    const loggedUser = useSelector((storeState: RootStoreState) => storeState.userModule.loggedUser)
 
     async function onLikePost(isLiked = false) {
         //TODO: Add authentication validation before liking with logged user
-        let loggedUser = await userService.getLoggedinUser()
         let updatedPost
 
         if (post && loggedUser) {
@@ -40,10 +40,8 @@ export function PostDetails({ post }: PostDetailsProps) {
     }
 
     async function onSavePost(isSaved = false) {
-        let loggedUser = await userService.getLoggedinUser()
-
+        //TODO: Add authentication validation before saved with logged user
         if (post && loggedUser) {
-            //TODO: Add authentication validation before saved with logged user
             if (!isSaved) return await userService.savePostToList(loggedUser._id, post._id)
             else await userService.removePostFromList(loggedUser._id, post._id)
         }
@@ -52,7 +50,6 @@ export function PostDetails({ post }: PostDetailsProps) {
 
     async function onLikeComment(commentId: string, isLiked = false) {
         //TODO: Add authentication validation before liking with logged user
-        let loggedUser = await userService.getLoggedinUser()
         let updatedPost
 
         if (post && loggedUser) {

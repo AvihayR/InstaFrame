@@ -59,8 +59,9 @@ export interface Followers {
 //Redux store types:
 
 export interface RootState {
-    systemModule: SystemState;
-    postModule: PostState;
+    systemModule: SystemState
+    postModule: PostState
+    userModule: UserState
 }
 
 export interface SystemState {
@@ -71,4 +72,8 @@ export interface PostState {
     posts: Post[],
     chosenPost: null | Post
     lastRemovedPost: Post | null
+}
+
+export interface UserState {
+    loggedUser: UserToken | null
 }

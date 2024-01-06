@@ -4,14 +4,24 @@ import { UserCreds, UserToken } from '../../typings'
 import { useEffect, useState } from "react"
 import { instaFont } from "@/cmps/Header"
 import Link from "next/link"
+import { SET_LOGGED_USER, UNSET_LOGGED_USER } from "@/store/reducers/user.reducer"
+import { useDispatch, useSelector } from "react-redux"
+import { RootStoreState } from "@/store/store"
 
 export default function LoginPage() {
-    const [loggedUser, setLoggedUser] = useState<UserToken | null>(null)
     const [isSignUpMode, setIsSignUpMode] = useState(false)
+    const loggedUser = useSelector((storeState: RootStoreState) => storeState.userModule.loggedUser)
+    const dispatch = useDispatch()
+
 
     useEffect(() => {
         setLoggedUser(userService.getLoggedinUser())
+
     }, [])
+
+    function setLoggedUser(user: UserToken | null) {
+        dispatch({ type: SET_LOGGED_USER, user })
+    }
 
     function toggleSignUpLogin() {
         setIsSignUpMode(currState => !currState)

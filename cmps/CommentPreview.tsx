@@ -28,7 +28,7 @@ export function CommentPreview({ comment, onLikeComment }: CommentProps) {
     }
 
     return (
-        <div className="comment-container px-4 pb-3 pt-4 flex items-start justify-between gap-4">
+        <div className="comment-container px-4 pb-3 pt-2 flex items-start justify-between gap-4">
             <article className='comment flex items-start'>
                 {comment?.by && <Image className='profile-img cursor-pointer rounded-3xl' src={comment.by.imgUrl} width={30} height={30} alt='Profile image' />}
                 <div className="caption-container grid ms-2">

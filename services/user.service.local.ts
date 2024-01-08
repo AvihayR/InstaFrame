@@ -19,7 +19,8 @@ export const userService = {
     removePostFromList,
     isPostSaved,
     toggleFollowUser,
-    isUserFollowed
+    isUserFollowed,
+    getByUsername
 }
 
 _createUsers()
@@ -34,6 +35,11 @@ async function getById(userId: string) {
     delete user.password
     // const user = await httpService.get(`user/${userId}`)
     return user as User
+}
+
+async function getByUsername(username: string) {
+    const users = await storageService.query<User>('user')
+    return users.filter(user => user.username === username)[0]
 }
 
 function remove(userId: string) {

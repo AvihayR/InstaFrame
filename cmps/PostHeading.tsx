@@ -5,6 +5,7 @@ import { userService } from '@/services/user.service.local'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootStoreState } from '@/store/store'
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 
 interface PostHeadingProps {
     post: Post | null
@@ -31,7 +32,7 @@ export function PostHeading({ post }: PostHeadingProps) {
 
     return (
         <div className="post-owner text-sm flex items-center justify-between px-4 py-3">
-            <div className="profile-container flex items-center">
+            {post?.by && <Link href={post.by.username} className="profile-container flex items-center">
                 {post?.by && <Image className='profile-img cursor-pointer' src={post.by.userImg} width={30} height={30} alt='Profile image' />}
                 {post?.by && <h3 className='ms-2 font-medium cursor-pointer hover:text-gray-400'>{post.by.username}</h3>}
 
@@ -50,7 +51,7 @@ export function PostHeading({ post }: PostHeadingProps) {
                     </>
                 }
 
-            </div>
+            </Link>}
             <div className="icon-container hover:text-gray-400 cursor-pointer">
                 <ThreeDots />
             </div>

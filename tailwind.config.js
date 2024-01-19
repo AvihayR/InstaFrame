@@ -14,6 +14,7 @@ module.exports = {
         'dark': '#151515',
         'light-dark': '#262626',
         'light': '#f7f7f7',
+        'follow': '#0095f6',
       },
     },
     screens: {

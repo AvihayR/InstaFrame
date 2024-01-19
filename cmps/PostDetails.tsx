@@ -10,7 +10,7 @@ import { SET_CHOSEN_POST, UPDATE_POST } from '@/store/reducers/posts.reducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { PostActionsBar } from './PostActionsBar'
 import { LikesCounter } from './LikesCounter'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { RootStoreState } from '@/store/store'
 import { AddComment } from './AddComment'
 const { timeAgo } = utilService
@@ -22,8 +22,8 @@ interface PostDetailsProps {
 
 export function PostDetails({ post }: PostDetailsProps) {
     const dispatch = useDispatch()
-    const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false)
     const loggedUser = useSelector((storeState: RootStoreState) => storeState.userModule.loggedUser)
+    const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false)
 
     async function onLikePost(isLiked = false) {
         //TODO: Add authentication validation before liking with logged user

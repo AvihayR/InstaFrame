@@ -146,6 +146,7 @@ async function isUserFollowed(userIdToCheck: string) {
     const loggedUser = await getById(loggedUserToken._id)
 
     // Convert followers array to Set for faster lookups
+    console.log(new Set(loggedUser.following.map((followedUser: Followers) => followedUser._id)).has(userIdToCheck))
     return new Set(loggedUser.following.map((followedUser: Followers) => followedUser._id)).has(userIdToCheck)
 }
 

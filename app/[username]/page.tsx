@@ -43,7 +43,7 @@ export default function Page({ params }: { params: { username: string } }) {
     }
 
     return (
-        <section className="user-page flex justify-center mt-5 w-full px-4 xl:px-0">
+        <section className="user-page w-full px-4 xl:px-0">
             {user && <UserHeader user={user} toggleFollow={toggleFollow} isFollowed={isUserFollowed} />}
 
         </section>

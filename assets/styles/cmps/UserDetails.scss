@@ -4,8 +4,6 @@
 
         .info-container {
             .user-interactions {
-                gap: rem(20px);
-
                 .follow-btn {
                     &:hover {
                         filter: saturate(75%);

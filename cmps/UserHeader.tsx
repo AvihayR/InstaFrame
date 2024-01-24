@@ -53,6 +53,9 @@ export function UserHeader({ user, toggleFollow, isFollowed }: UserHeaderProps) 
                     <UserCounters postsCount={user.posts.length} followersCount={user.followers.length} followingCount={user.following.length} />
                 </div>
             </div>
+            <div className="fullname-container">
+                <h2 className="fullname text-sm font-semibold tracking-wide mt-2">{user.fullname}</h2>
+            </div>
         </>
     )
 }

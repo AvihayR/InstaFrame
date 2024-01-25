@@ -27,7 +27,7 @@ export function UserHeader({ user, toggleFollow, isFollowed }: UserHeaderProps) 
                 </div>
             </div>
             <div className="user-header mt-5 first-letter flex xs:mt-7 sm:mx-20 md:mx-30 lg:justify-center">
-                <div className="profile-img-container me-6 xs:me-10 sm:me-20 md:me-26">
+                <div className="profile-img-container me-8 xs:me-10 sm:me-20 md:me-26">
                     <Image className="user-img rounded-full w-20 xs:w-28 sm:w-36" src={user.imgUrl} alt={`${user.username}'s Profile image`} width={'150'} height={'150'}></Image>
                 </div>
                 <div className="info-container hidden sm:block">
@@ -54,7 +54,7 @@ export function UserHeader({ user, toggleFollow, isFollowed }: UserHeaderProps) 
                 </div>
             </div>
             <div className="fullname-container">
-                <h2 className="fullname text-sm font-semibold tracking-wide mt-2">{user.fullname}</h2>
+                <h2 className="fullname text-sm font-semibold tracking-wide mt-1">{user.fullname}</h2>
             </div>
         </>
     )

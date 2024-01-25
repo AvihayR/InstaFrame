@@ -1,4 +1,5 @@
 'use client'
+import { FollowedBy } from "@/cmps/FollowedBy"
 import { UserHeader } from "@/cmps/UserHeader"
 //TODO: When switching to DB Usage - switch this page to a server component and fetch data using server action
 
@@ -44,11 +45,13 @@ export default function Page({ params }: { params: { username: string } }) {
     }
 
     return (
-        <section className="user-page w-full px-4 xl:px-0">
-            {user && <UserHeader user={user} toggleFollow={toggleFollow} isFollowed={isUserFollowed} />}
-            {user && <div className="bio-container text-sm">
+        user && <section className="user-page w-full px-4 xl:px-0">
+            <UserHeader user={user} toggleFollow={toggleFollow} isFollowed={isUserFollowed} />
+            <div className="bio-container text-sm">
                 {user.bio}
-            </div>}
+            </div>
+
+            <FollowedBy followers={user.followers}></FollowedBy>
         </section>
     )
 }

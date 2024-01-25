@@ -1,7 +1,7 @@
 import { storageService } from './async-storage.service'
 import demoUsers from './users.demo'
 import { utilService } from './util.service'
-import { Followers, User } from '../typings'
+import { Follower, User } from '../typings'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedInUser'
 
 export const userService = {
@@ -146,8 +146,8 @@ async function isUserFollowed(userIdToCheck: string) {
     const loggedUser = await getById(loggedUserToken._id)
 
     // Convert followers array to Set for faster lookups
-    console.log(new Set(loggedUser.following.map((followedUser: Followers) => followedUser._id)).has(userIdToCheck))
-    return new Set(loggedUser.following.map((followedUser: Followers) => followedUser._id)).has(userIdToCheck)
+    console.log(new Set(loggedUser.following.map((followedUser: Follower) => followedUser._id)).has(userIdToCheck))
+    return new Set(loggedUser.following.map((followedUser: Follower) => followedUser._id)).has(userIdToCheck)
 }
 
 async function toggleFollowUser(userToFollowId: string, loggedUserId: string, unFollowMode = false) {

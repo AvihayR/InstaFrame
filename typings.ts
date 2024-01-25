@@ -32,8 +32,8 @@ export interface User {
     bio: string,
     posts: Post[],
     savedPosts: string[],
-    followers: Followers[],
-    following: Followers[],
+    followers: Follower[],
+    following: Follower[],
 }
 
 export interface UserCreds {
@@ -48,7 +48,7 @@ export interface UserToken {
     imgUrl: string
 }
 
-export interface Followers {
+export interface Follower {
     _id: string
     username: string
     fullname: string

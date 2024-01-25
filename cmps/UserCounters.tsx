@@ -7,10 +7,9 @@ interface UserCountersProps {
 }
 
 export function UserCounters({ postsCount, followersCount, followingCount }: UserCountersProps) {
-    const props = [postsCount, followersCount, followingCount]
 
     return (
-        <div className="counters flex gap-10 xs:gap-14">
+        <div className="counters flex gap-8 xs:gap-14">
             <div className="posts-counter-container flex flex-col items-center">
                 <h1 className="post-counter text-lg font-medium xs:text-xl">{`${postsCount}`}</h1>
                 <span className="text-sm leading-3 xs:text-base">Posts</span>

@@ -54,7 +54,7 @@ export function UserHeader({ user, toggleFollow, isFollowed }: UserHeaderProps) 
                 </div>
             </div>
             <div className="fullname-container">
-                <h2 className="fullname text-sm font-semibold tracking-wide mt-1">{user.fullname}</h2>
+                <h2 className="fullname text-sm font-semibold tracking-wide mt-3">{user.fullname}</h2>
             </div>
         </>
     )

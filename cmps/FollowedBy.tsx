@@ -10,7 +10,7 @@ export function FollowedBy({ followers }: FollowedByProps) {
 
     if (followerPreviews.length > 2) {
         return (
-            <div className="followed-by-container flex items-center mt-4">
+            <div className="followed-by-container flex items-center mt-3">
 
                 {followerPreviews.map((f, idx) => <Image className={`rounded-full relative border-2 drop-shadow-md dark:border-neutral-950 ${idx === 1 && 'right-3 -z-10'} ${idx === 2 && 'right-6 -z-20'}`} src={f.imgUrl} alt={`${f.username}'s profile image`} width={30} height={30}></Image>)}
 

@@ -1,5 +1,6 @@
 import { Follower } from "@/typings"
 import Image from "next/image"
+import Link from "next/link"
 
 interface FollowedByProps {
     followers: Follower[]
@@ -15,7 +16,7 @@ export function FollowedBy({ followers }: FollowedByProps) {
                 {followerPreviews.map((f, idx) => <Image className={`rounded-full relative border-2 drop-shadow-md dark:border-neutral-950 ${idx === 1 && 'right-3 -z-10'} ${idx === 2 && 'right-6 -z-20'}`} src={f.imgUrl} alt={`${f.username}'s profile image`} width={30} height={30}></Image>)}
 
                 <span className="text-sm relative right-4 tracking-wide">
-                    Followed by <span className="font-semibold tracking-normal">{followerPreviews[0].username}</span>, <span className="font-semibold tracking-normal">{followerPreviews[1].username}</span> and others
+                    Followed by <Link href={followerPreviews[0].username} className="font-semibold tracking-normal">{followerPreviews[0].username}</Link>, <Link href={followerPreviews[1].username} className="font-semibold tracking-normal">{followerPreviews[1].username}</Link> and others
                 </span>
             </div>
         )

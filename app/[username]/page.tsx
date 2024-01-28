@@ -58,7 +58,7 @@ export default function Page({ params }: { params: { username: string } }) {
                 <FollowedBy followers={user.followers}></FollowedBy>
                 {
                     isUserFollowed ?
-                        <button onClick={() => toggleFollow(true)} className="mobile-follow-btn me-2 bg-zinc-600 hover:bg-zinc-700 font-medium text-base rounded-lg">Following</button>
+                        <button onClick={() => toggleFollow(true)} className="mobile-follow-btn p-1 w-full mt-3 me-2 bg-zinc-600 hover:bg-zinc-700 font-medium text-base rounded-lg">Following</button>
                         :
                         <button onClick={() => toggleFollow()} className="mobile-follow-btn p-1 w-full mt-3 me-2 bg-follow font-semibold text-base rounded-lg xs:hidden">Follow</button>
                 }

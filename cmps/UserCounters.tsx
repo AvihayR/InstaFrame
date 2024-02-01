@@ -9,7 +9,7 @@ interface UserCountersProps {
 export function UserCounters({ postsCount, followersCount, followingCount }: UserCountersProps) {
 
     return (
-        <div className="counters flex gap-8 xs:gap-14 md:gap-8">
+        <div className="counters flex gap-8 xs:gap-10 md:gap-8">
             <div className="posts-counter-container flex flex-col items-center md:flex-row md:gap-2">
                 <h1 className="post-counter text-lg font-medium xs:text-xl md:text-base md:font-semibold">{`${postsCount}`}</h1>
                 <span className="text-sm leading-3 xs:text-base">Posts</span>
